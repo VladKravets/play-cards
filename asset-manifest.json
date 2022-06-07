@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/play-cards/static/css/main.073c9b0a.css",
+    "main.js": "/play-cards/static/js/main.286cb30a.js",
+    "static/js/787.3cdc8eeb.chunk.js": "/play-cards/static/js/787.3cdc8eeb.chunk.js",
+    "static/media/logo.svg": "/play-cards/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/play-cards/index.html",
+    "main.073c9b0a.css.map": "/play-cards/static/css/main.073c9b0a.css.map",
+    "main.286cb30a.js.map": "/play-cards/static/js/main.286cb30a.js.map",
+    "787.3cdc8eeb.chunk.js.map": "/play-cards/static/js/787.3cdc8eeb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.286cb30a.js"
+  ]
+}
