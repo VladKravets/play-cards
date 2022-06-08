@@ -5,7 +5,7 @@ import SuperCheckbox from "../../a-1 main/f1-UI/common/c3-SuperCheckbox/SuperChe
 
 const Test = () => {
     return (
-        <div style={{display:'flex',}}>
+        <div style={{display:'flex'}}>
             <SuperInputText placeholder={'test test test'}/>
             <SuperButton>TEST</SuperButton>
             <SuperCheckbox/>

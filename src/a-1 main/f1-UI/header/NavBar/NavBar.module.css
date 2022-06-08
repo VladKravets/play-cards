@@ -1,0 +1,35 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+    border: 1px solid;
+}
+
+.navbar:hover {
+}
+
+.text {
+    background-color: darkblue;
+    padding: 5px;
+    border-radius: 5px;
+    color: #a7a7ea;
+
+}
+
+.item {
+    font-weight: bold;
+    color: #111194;
+    font-family: sans-serif;
+    margin-right: 10px;
+    text-decoration: none;
+}
+.active{
+    margin-right: 10px;
+    color: #5d4c0e;
+}
+
+.item:hover {
+    color: darkblue;
+}
