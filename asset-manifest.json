@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/play-cards/static/css/main.16af01c3.css",
-    "main.js": "/play-cards/static/js/main.878c1535.js",
+    "main.css": "/play-cards/static/css/main.f258a9a9.css",
+    "main.js": "/play-cards/static/js/main.5947adfc.js",
     "static/js/787.3cdc8eeb.chunk.js": "/play-cards/static/js/787.3cdc8eeb.chunk.js",
     "index.html": "/play-cards/index.html",
-    "main.16af01c3.css.map": "/play-cards/static/css/main.16af01c3.css.map",
-    "main.878c1535.js.map": "/play-cards/static/js/main.878c1535.js.map",
+    "main.f258a9a9.css.map": "/play-cards/static/css/main.f258a9a9.css.map",
+    "main.5947adfc.js.map": "/play-cards/static/js/main.5947adfc.js.map",
     "787.3cdc8eeb.chunk.js.map": "/play-cards/static/js/787.3cdc8eeb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.16af01c3.css",
-    "static/js/main.878c1535.js"
+    "static/css/main.f258a9a9.css",
+    "static/js/main.5947adfc.js"
   ]
 }
