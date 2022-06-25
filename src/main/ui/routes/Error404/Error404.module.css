@@ -1,0 +1,123 @@
+.main__wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.images__wrapper {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    transform: translateX(-50%);
+}
+
+.astronaut_img {
+    max-width: 650px;
+    max-height: 650px;
+}
+
+.callout__text_wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    height: 330px;
+    padding: 70px 60px 90px 150px;
+    margin-top: -50px;
+    margin-left: -300px;
+    background: url(../../../../assets/images/callout404.png) center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    user-select: none;
+}
+
+
+.custom_text {
+    font-size: 40px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.error_text {
+    font-size: 50px;
+    font-weight: 900;
+    color: rgba(0, 235, 235, 1);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
+}
+
+.backLink {
+    position: absolute;
+    right: 60px;
+    bottom: 70px;
+    color: #444;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 986px) {
+    .images__wrapper {
+        flex-direction: column-reverse;
+    }
+    .callout__text_wrapper {
+        margin-top: 0;
+        margin-left: 180px;
+        margin-bottom: -100px;
+    }
+}
+
+@media screen and (max-width: 777px) {
+    .images__wrapper {
+        align-items: center;
+    }
+    .callout__text_wrapper {
+        background: none;
+        margin: 0;
+        margin-bottom: -80px;
+        margin-bottom: -12%;
+        border: 6px solid #666;
+        padding: 30px;
+        text-align: center;
+        border-radius: 22px;
+        background-color: #fff;
+    }
+    .callout__text_wrapper::after {
+        content: '';
+        position: absolute;
+        z-index: -66;
+        right: 66px;
+        right: 12%;
+        bottom: -25px;
+        width: 50px;
+        height: 50px;
+        transform: rotate(45deg);
+        background-color: #666;
+    }
+    .backLink {
+        bottom: 22px;
+        right: 22px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .images__wrapper {
+        width: 100%;
+    }
+    .astronaut_img {
+        width: 100%;
+    }
+    .callout__text_wrapper {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .callout__text_wrapper {
+        padding: 10px;
+    }
+}

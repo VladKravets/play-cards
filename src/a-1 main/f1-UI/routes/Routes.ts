@@ -1,6 +1,0 @@
-export const PROFILE_PAGE='/profile'
-export const LOGIN_PAGE='/login'
-export const REGISTRATION_PAGE='/registration'
-export const PAGE_NOT_FOUND='/404-page-note-found'
-export const PASSWORD_RECOVERY='/password-recovery'
-export const CREATE_NEW_PASSWORD='/create-new-password'

@@ -51,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "formik": "^2.2.9",
     "gh-pages": "^4.0.0"
   }
 }
