@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/play-cards/static/css/main.f258a9a9.css",
-    "main.js": "/play-cards/static/js/main.5947adfc.js",
+    "main.css": "/play-cards/static/css/main.fb459767.css",
+    "main.js": "/play-cards/static/js/main.6d5743ab.js",
     "static/js/787.3cdc8eeb.chunk.js": "/play-cards/static/js/787.3cdc8eeb.chunk.js",
+    "static/media/callout404.png": "/play-cards/static/media/callout404.28043e3c62d095079cdd.png",
+    "static/media/astronaut404.png": "/play-cards/static/media/astronaut404.2760983ea0614a474854.png",
     "index.html": "/play-cards/index.html",
-    "main.f258a9a9.css.map": "/play-cards/static/css/main.f258a9a9.css.map",
-    "main.5947adfc.js.map": "/play-cards/static/js/main.5947adfc.js.map",
+    "main.fb459767.css.map": "/play-cards/static/css/main.fb459767.css.map",
+    "main.6d5743ab.js.map": "/play-cards/static/js/main.6d5743ab.js.map",
     "787.3cdc8eeb.chunk.js.map": "/play-cards/static/js/787.3cdc8eeb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f258a9a9.css",
-    "static/js/main.5947adfc.js"
+    "static/css/main.fb459767.css",
+    "static/js/main.6d5743ab.js"
   ]
 }
