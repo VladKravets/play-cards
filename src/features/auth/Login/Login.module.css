@@ -1,27 +1,70 @@
-.loginTitle{
-    border:1px solid red;
+.loginTitle {
     font-size: 25px;
-    font-family: 'Montserrat', sans-serif;
+    color: #6b15b7;
+    font-weight: bold;
     text-transform: uppercase;
-    font-weight: 600;
-}
-.loginSubTitle{
-    border:1px solid red;
+    text-shadow: 4px 4px 2px rgba(88,25,146,0.6);
+
 }
 
-.loginBlock{
-    margin-top: 50px;
-    border:1px solid red;
+.loginSubTitle {
+    font-size: 20px;
+    margin: 5px;
+}
+
+.loginBlock {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #F9F9FE;
+    max-width: 413px;
+    min-height: 500px;
+    margin: 100px auto 0;
+    border-radius: 8px;
+    padding: 35px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    -webkit-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+    -moz-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+    box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
 }
-.inputLabel{
-    border:1px solid;
+
+.inputLabel {
+    display: flex;
+    opacity: .5;
 }
-.input{
-    border:1px solid #1f701a;
+
+.input {
+    border: 1px solid #1f701a;
 }
-.rememberMe{
-    border:1px solid #004cce;
+
+.signUpLabel {
+    margin: 5px;
+}
+.linkSignUp{
+    color: blueviolet;
+}
+
+.rememberLoginBlock{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:50px auto 50px auto;
+}
+.rememberMe {
+    margin: 5px;
+}
+
+.forgotPass {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 16px;
+}
+
+.lostPassword {
+    color: blueviolet;
+}
+
+.submit {
+    padding: 10px 40px;
+    font-size: 18px;
 }

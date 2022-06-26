@@ -5,9 +5,9 @@ import SuperCheckbox from "../../../main/ui/common/SuperCheckbox/SuperCheckbox";
 import {NavLink} from "react-router-dom";
 import {PATH} from "../../../main/ui/routes/RoutesList";
 import SuperButton from "../../../main/ui/common/SuperButton/SuperButton";
+import {useFormik} from "formik";
 import {loginTC} from "../../../main/bll/reducers/loginReducer";
 import {useAppDispatch} from "../../../main/bll/store";
-import {useFormik} from "formik";
 
 type FormikErrorType = {
     email?: string
@@ -46,36 +46,50 @@ const LoginForm = () => {
     })
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <span className={s.inputLabel} style={{marginTop: '0px'}}>Email</span>
-            <SuperInputText
-                className={s.input}
-                placeholder={'Email'}
-                type="email"
-                {...formik.getFieldProps('email')}
-            />
-            {formik.errors.email && formik.touched.email && <div style={{color: "red"}}>{formik.errors.email}</div>}
-            <span className={s.inputLabel} style={{marginTop: '10px'}}>Password</span>
-            <SuperInputText className={s.input}
-                            placeholder={'Password'}
-                            {...formik.getFieldProps('password')}
-            />
-            {formik.errors.password && formik.touched.password &&
-                <div style={{color: "red"}}>{formik.errors.password}</div>}
+        <>
+            <form onSubmit={formik.handleSubmit}>
+                <span className={s.inputLabel} style={{marginTop: '0px'}}>Email</span>
+                <SuperInputText
+                    className={s.input}
+                    placeholder={'Email'}
+                    type="email"
+                    {...formik.getFieldProps('email')}
+                />
+                {formik.errors.email && formik.touched.email && <div style={{color: "red"}}>{formik.errors.email}</div>}
+                <span className={s.inputLabel} style={{marginTop: '10px'}}>Password</span>
+                <SuperInputText className={s.input}
+                                type='password'
+                                placeholder={'Password'}
+                                {...formik.getFieldProps('password')}
+                />
+                {formik.errors.password && formik.touched.password &&
+                    <div style={{color: "red"}}>{formik.errors.password}</div>}
+                <div>
+                    <NavLink to={PATH.passwordRecovery}
+                             className={s.forgotPass}>
+                        Lost your <span className={s.lostPassword}>password</span>?
+                    </NavLink>
+                </div>
+                <div className={s.rememberLoginBlock}>
+                    <label className={s.rememberMe}>
+                        <SuperCheckbox
+                            {...formik.getFieldProps('rememberMe')}
+                        >{' '}</SuperCheckbox>Remember me
+                    </label>
+                    <SuperButton type={'submit'} className={s.submit}>
+                        Login
+                    </SuperButton>
+                </div>
+            </form>
+            <div>
+            <span
+                className={s.signUpLabel}>Don’t have an account?</span>
+                <NavLink to={PATH.registration}
+                         className={s.signUpIn}
+                ><span className={s.linkSignUp}>Sign Up</span> </NavLink>
+            </div>
 
-            <label className={s.rememberMe}>
-                <SuperCheckbox
-                    {...formik.getFieldProps('rememberMe')}
-                >{' '}</SuperCheckbox>Remember me
-            </label>
-            <NavLink to={PATH.passwordRecovery}
-                     className={s.forgotPass}>
-                Lost your password?
-            </NavLink>
-            <SuperButton type={'submit'} className={s.submit}>
-                Login
-            </SuperButton>
-        </form>
+        </>
     );
 };
 

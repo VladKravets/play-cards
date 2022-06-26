@@ -19,11 +19,7 @@ const Login = () => {
             <h1 className={s.loginTitle}>Play cards</h1>
             <h2 className={s.loginSubTitle}>Login</h2>
             <LoginForm/>
-            <span
-                className={s.signUpLabel}>Don’t have an account?</span>
-            <NavLink to={PATH.registration}
-                     className={s.signUpIn}
-            >Sign Up</NavLink>
+
         </div>
     )
 }
