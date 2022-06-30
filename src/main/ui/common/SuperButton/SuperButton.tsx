@@ -13,6 +13,7 @@ type SuperButtonPropsType = DefaultButtonPropsType & {
     btnStyle?: ButtonStyleType
     btnSize?: ButtonSizeType
     upperCase?: boolean
+    rounded?: boolean
 }
 
 const SuperButton: React.FC<SuperButtonPropsType> = (
@@ -21,13 +22,18 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
         btnStyle,
         btnSize,
         upperCase,
+        rounded,
         ...restProps// все остальные пропсы попадут в объект restProps, там же будет children
     }
 ) => {
 
-    const size = btnSize || 'small'
+    const size = btnSize || 'medium'
     const style = `btn_${btnStyle}`
-    const finalClassName = `${s.btn} ${btnStyle ? s[style] : ''} ${s[size]} ${(upperCase && s.upperCase) || ''} ${(className && className) || ''}`
+    const finalClassName = `${s.btn} ${s[size]}` 
+        + `${btnStyle ? ` ${s[style]}` : ''}` 
+        + `${upperCase ? ` ${s.upperCase}` : ''}`
+        + `${rounded ? ` ${s.rounded}` : ''}`
+        + `${className ? ` ${className}` : ''}`
 
     return (
         <button

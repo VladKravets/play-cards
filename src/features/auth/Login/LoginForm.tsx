@@ -71,14 +71,14 @@ const LoginForm = () => {
                     </NavLink>
                 </div>
                 <div className={s.rememberLoginBlock}>
-                    <label className={s.rememberMe}>
-                        <SuperCheckbox
-                            {...formik.getFieldProps('rememberMe')}
-                        >{' '}</SuperCheckbox>Remember me
-                    </label>
-                    <SuperButton type={'submit'} className={s.submit}>
-                        Login
-                    </SuperButton>
+                <label className={s.rememberMe}>
+                    <SuperCheckbox
+                        {...formik.getFieldProps('rememberMe')}
+                    >{' '}</SuperCheckbox>Remember me
+                </label>
+                <SuperButton type={'submit'} className={s.submit}>
+                    Login
+                </SuperButton>
                 </div>
             </form>
             <div>

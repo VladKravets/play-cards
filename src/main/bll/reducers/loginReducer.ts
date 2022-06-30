@@ -1,7 +1,7 @@
 import {BaseThunkType, InferActionsTypes} from "../store"
 import {authAPI, LoginParamsType} from "../../api/authAPI";
 
-const initialState = {
+ const initialState = {
     _id: '',
     email: '',
     name: '',
