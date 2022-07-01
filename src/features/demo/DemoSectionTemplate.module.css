@@ -1,0 +1,16 @@
+.section {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-bottom: 40px;
+    border-bottom: 2px solid rgba(9,9,9, .1);
+}
+
+.section h2 {
+    margin-bottom: 44px;
+    padding-bottom: 4px;
+    color: #f4c666;
+    border-bottom: 1px solid red;
+}

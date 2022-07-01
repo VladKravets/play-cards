@@ -1,0 +1,57 @@
+.label {
+    position: relative;
+    padding-left: calc(18px + 6px);
+    color: #666;
+    cursor: pointer;
+}
+
+.label input {
+    -webkit-appearance: none;
+    display: none;
+    visibility: hidden;
+}
+
+.label::before {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+
+.label::after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #F87DA9;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+.active {
+    color: #222222;
+}
+.active::after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+
+}
+
+
+
+.label_disabled {
+    text-decoration: line-through;
+    opacity: 0.8;
+}

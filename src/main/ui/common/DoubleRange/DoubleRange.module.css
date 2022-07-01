@@ -1,0 +1,228 @@
+/* ATTENTION:  */
+/* For IE support, you need to replace css variables and uncomment the code with -mx- prefixes */
+
+
+/* 
+Elements position structure
+-> range inputs <none zIndex> (static positioning)
+    ->  slider wrapper <zIndex 4> 
+        ->  slider selected range line <zIndex 6>
+            ->  slider points <zIndex 22>
+*/
+
+
+/* SOME OPTIONS */
+:root {
+	--SDR-slider_border-height: 1px;
+	--SDR-slider_body-height: 4px;
+	--SDR-slider_bg-color: #222327;
+	--SDR-slider_border-color: rgba(255, 255, 255, 0.8);
+
+	--SDR-range_selected-bg-color: #29fd53;
+
+	--SDR-slider_point-diameter: 18px;
+	--SDR-slider_point-bg-color: #444;
+    --SDR-slider_point-bg-image: none;
+    --SDR-slider_point-border: 1px solid rgba(255, 255, 255, .3);
+	--SDR-slider_point-active-shadow: rgba(25, 118, 210, .16) 0px 0px 0px 8px;
+}
+
+
+
+/* SLIDER WRAPPER (custom range track)*/
+/* todo: change width */
+.slider__wrapper {
+	position: relative;
+	z-index: 4;
+	display: flex;
+	justify-content: center;
+	width: 200px;
+	height: calc(var(--SDR-slider_body-height) + (var(--SDR-slider_border-height) * 2));
+	margin: 0 calc(var(--SDR-slider_point-diameter) / 2);
+	background-color: var(--SDR-slider_bg-color);
+	border: var(--SDR-slider_border-height) solid var(--SDR-slider_border-color);
+	border-radius: 6px;
+}
+
+
+
+/* SELECTED RANGE LINE */
+.range__selected_line {
+	position: absolute;
+	z-index: 6;
+	top: 0;
+    left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--SDR-range_selected-bg-color);
+	border-radius: 6px;
+}
+
+
+
+/* RANGE INPUTS */
+/* crossbrowser reset/normalize default view */
+.range__input {
+	-webkit-appearance: none; /* Hides default inputs */
+	position: absolute; /*!!!!!! Leave the default z-index value of the INPUTS*/
+	top: 0;
+	width: calc(100% + var(--SDR-slider_point-diameter));
+	height: 100%; /* slider points - align center */
+	margin: 0; /* clear default margins */
+	background-color: transparent; /* Otherwise bg in Chrome (default white)*/
+	cursor: pointer;
+}
+
+/* for Internet Explorer (but need to remove var() because they are not supported in internet explorer) */
+/* .range__input::-ms-track {
+	width: 100%;
+	cursor: pointer;
+	background: transparent; /* hides default slider track
+	border-color: transparent; /* hides default slider track
+	color: transparent; /* hides default slider track
+} */
+
+/* cleanup input outline (slider points will be highlighted on input focus) */
+.range__input:focus {
+	outline: none;
+}
+
+
+
+
+/* SLIDER POINTS */
+.range__input::-webkit-slider-thumb {
+	-webkit-appearance: none; /* Hides default slider points (Chrome, Safari, Opera) */
+}
+
+/* crossbrowser customize slider points*/
+.range__input::-webkit-slider-thumb { /* Chrome, Safari, Opera */
+	position: relative;
+	z-index: 22; /* !!!!!!! Changed z-index value of the SLIDER POINTS */
+	width: var(--SDR-slider_point-diameter);
+	height: var(--SDR-slider_point-diameter);
+    border: var(--SDR-slider_point-border);
+	border: 100%;
+	border-radius: 100%;
+	background-color: var(--SDR-slider_point-bg-color);
+    background-image: var(--SDR-slider_point-bg-image);
+	box-shadow: 0px 0px 6px #999, 1px 1px 8px #666;
+	cursor: pointer;
+}
+.range__input:focus::-webkit-slider-thumb {
+	box-shadow: var(--SDR-slider_point-active-shadow);
+}
+.range__input:hover::-webkit-slider-thumb {
+	box-shadow: var(--SDR-slider_point-active-shadow);
+}
+
+
+.range__input::-moz-range-thumb { /* Mozilla Firefox */
+	position: relative;
+	z-index: 22; /* !!!!!!! Changed z-index value of the SLIDER POINTS */
+	width: var(--SDR-slider_point-diameter);
+	height: var(--SDR-slider_point-diameter);
+    border: var(--SDR-slider_point-border);
+	border: 100%;
+	border-radius: 100%;
+	background-color: var(--SDR-slider_point-bg-color);
+    background-image: var(--SDR-slider_point-bg-image);
+	box-shadow: 0px 0px 6px #999, 1px 1px 8px #666;
+	cursor: pointer;
+}
+.range__input:focus::-moz-range-thumb {
+	box-shadow: var(--SDR-slider_point-active-shadow);
+}
+.range__input:hover::-moz-range-thumb {
+	box-shadow: var(--SDR-slider_point-active-shadow);
+}
+
+
+/* for Internet Explorer (but need to remove var() because they are not supported in internet explorer) */
+/* .range__input::-ms-thumb {  /* Internet Explorer 
+	position: relative;
+	z-index: 22; /* !!!!!!! Changed z-index value of the SLIDER POINTS 
+	width: var(--SDR-slider_point-diameter);
+	height: var(--SDR-slider_point-diameter);
+    border: var(--SDR-slider_point-border);
+	border: 100%;
+	border-radius: 100%;
+	background-color: var(--SDR-slider_point-bg-color);
+    background-image: var(--SDR-slider_point-bg-image);
+	box-shadow: 0px 0px 6px #999, 1px 1px 8px #666;
+	cursor: pointer;
+} 
+.range__input:focus::-ms-thumb {
+	box-shadow: var(--SDR-slider_point-active-shadow);
+}
+.range__input:hover::-ms-thumb {
+	box-shadow: var(--SDR-slider_point-active-shadow);
+}
+*/
+
+
+
+
+/* CUSTOM RANGE VALUE INDICATOR */
+.range__value_indicator {
+    position: absolute;
+    transform: translateX(-50%);
+    bottom: 0;
+    bottom: calc( 8px + ( ( var(--SDR-slider_body-height) + var(--SDR-slider_point-diameter) ) / 2) );
+	color: #fff;
+	opacity: 0;
+	user-select: none;
+	transition: opacity .5s;
+}
+
+.range__value_indicator div {
+    position: relative;
+    padding: 5px 10px;
+    border-radius: 3px;
+    background-color: rgba(117, 117, 117, .6);
+}
+
+.range__value_indicator div::after {
+    content: ''; 
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top: 5px solid rgba(117, 117, 117, .6);
+}
+.range__input:focus + .range__value_indicator { 
+	opacity: 1;
+}
+.range__input:hover + .range__value_indicator { 
+	opacity: 1;
+}
+
+
+
+
+
+
+
+
+/* Crossbrowser reset for input range track styles */
+.range__input::-webkit-slider-runnable-track,
+.range__input::-moz-range-track,
+.range__input::-ms-track {
+	width: 100%;
+	background: transparent;
+}
+
+.range__input::-ms-fill-lower,
+.range__input::-ms-fill-upper {
+	background: transparent;
+}
+
+.range__input:focus::-ms-fill-lower,
+.range__input:focus::-ms-fill-upper {
+	background: transparent;
+}
+
+.range__input:focus::-webkit-slider-runnable-track {
+	background-color: transparent;
+}

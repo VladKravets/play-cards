@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 68px; /* Because of SuperInput wrapper fixed height */
+}
+
+.textLine {
+    display: inline-block;
+    position: relative;
+    word-break: break-word;
+}
+.textLineWithIcon {
+    padding-right: 1.1em;
+}
+
+.editIcon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    width: 0.8em;
+    cursor: pointer;
+}

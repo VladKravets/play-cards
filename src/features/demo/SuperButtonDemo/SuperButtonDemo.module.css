@@ -1,0 +1,17 @@
+.buttonsCol {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+}
+.buttonsCol:nth-child(2) {
+    margin-left: 30px;
+}
+
+.buttonsRow {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+}

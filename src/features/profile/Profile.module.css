@@ -1,0 +1,45 @@
+.profileBlock {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #F9F9FE;
+    max-width: 413px;
+    min-height: 500px;
+    margin: 100px auto 0;
+    border-radius: 8px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+    -moz-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+    box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+}
+
+.pageTitle {
+    font-size: 20px;
+    margin: 5px;
+}
+
+.container{
+
+}
+.avatar img {
+    margin-top: 15px;
+    box-shadow: 0 0 10px #9f9f9f;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+.line{
+    width: 200px;
+    border-bottom: 2px solid dodgerblue;
+    margin-top:-15px
+}
+.btn{
+margin-top:25px;
+}
+.underText{
+    font-size: 10px;
+    margin: 5px;
+    opacity: 0.6;
+    color:gray;
+}
