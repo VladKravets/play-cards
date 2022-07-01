@@ -1,10 +1,10 @@
 import React from 'react';
-import s from './Login.module.css'
 import {useSelector} from 'react-redux';
-import {Navigate, NavLink} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import {AppRootStateType} from "../../../main/bll/store";
 import {PATH} from "../../../main/ui/routes/RoutesList";
 import LoginForm from "./LoginForm";
+import AuthBlock from '../AuthBlock';
 
 
 const Login = () => {
@@ -15,12 +15,14 @@ const Login = () => {
     if (isLoggedIn) return <Navigate to={PATH.profile}/>
 
     return (
-        <div className={s.loginBlock}>
-            <h1 className={s.loginTitle}>Play cards</h1>
-            <h2 className={s.loginSubTitle}>Login</h2>
+        <AuthBlock 
+			pageTitle="Sign In"
+			navBlockLabel="Don’t have an account?"
+			navLinkPath={PATH.registration}
+			navLinkTitle="Sign Up">
+            
             <LoginForm/>
-
-        </div>
+        </AuthBlock>
     )
 }
 

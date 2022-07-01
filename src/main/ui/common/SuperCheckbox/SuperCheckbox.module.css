@@ -1,7 +1,3 @@
-.checkbox {
-
-}
-
-.spanClassName {
+.checkbox + span {
     cursor: pointer;
 }

@@ -24,7 +24,7 @@ const Registration = () => {
 
 	return (
 		<AuthBlock 
-			pageTitle="Registration"
+			pageTitle="Sign Up"
 			navBlockLabel="Already registered?"
 			navLinkPath={PATH.login}
 			navLinkTitle="Sign In">

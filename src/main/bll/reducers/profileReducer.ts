@@ -15,23 +15,22 @@ const initialState = {
         verified: false,
         rememberMe: false,
         error: '',
+    loading:false
 
 
 }
 
 const profileReducer = (state: ProfileStateType = initialState, action: ProfileActionsTypes): ProfileStateType => {
     switch(action.type) {
-       /*  case 'profile/GET-USER-INFO':
-             return {
-                 ...state, ...action.profile
-                
-            }*/
+
         case "profile/UPDATE-USER-INFO":
             return {
                 ...state, ...action.profile
             }
         case 'login/SET-IS-LOGGED-IN':
             return {...state, ...action.payload}
+        case "profile/IS-LOADING":
+            return {...state, loading: action.value}
         default: return state
     }
 }
@@ -39,17 +38,18 @@ const profileReducer = (state: ProfileStateType = initialState, action: ProfileA
 
 //actions
 export const profileActions = {
-  /*  getUserInfo: (profile:ProfileStateType) => (
-        {type: 'profile/GET-USER-INFO',profile} as const
-    ),*/
+
     updateUserInfo: (profile:ProfileStateType) => (
         {type: 'profile/UPDATE-USER-INFO',profile} as const
     ),
+    isLoading:(value:boolean)=>({
+        type:'profile/IS-LOADING',value}as const
+    )
 }
 
 //thunks
  export const updateUserInfoTC = (name:string, avatar:string): BaseThunkType<ProfileActionsTypes> => async (dispatch) => {
-
+dispatch(profileActions.isLoading(true))
      profileAPI.updateUserInfo(name, avatar)
          .then(res => {
              if (res) {
@@ -66,17 +66,10 @@ export const profileActions = {
 
              dispatch(error)
          })
+         .finally(()=>{
+             dispatch(profileActions.isLoading(false))
+         })
  }
-/*export const getUserInfoTC = (): BaseThunkType<ProfileActionsTypes> => async (dispatch) => {
-
-        profileAPI.me()
-            .then(res=>{
-                if(res){
-                    dispatch(profileActions.getUserInfo(res.data))
-                }
-            })
-}*/
-
 
 export default profileReducer
 
