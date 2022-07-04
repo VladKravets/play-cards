@@ -1,7 +1,10 @@
 import React, {useState} from 'react'
 import {useAppDispatch, useAppSelector} from "../../main/bll/store";
+import user from "../../assets/images/user.png"
 import {Navigate} from "react-router-dom";
 import {PATH} from "../../main/ui/routes/RoutesList";
+import SuperInputText from "../../main/ui/common/SuperInputText/SuperInputText";
+
 import {updateUserInfoTC} from "../../main/bll/reducers/profileReducer";
 import EditableTextLine from "../../main/ui/common/EditableTextLine/EditableTextLine";
 import SuperButton from "../../main/ui/common/SuperButton/SuperButton";
@@ -13,15 +16,15 @@ const Profile = () => {
 
     const dispatch = useAppDispatch();
 
-    let name = useAppSelector(state => state.profile.name)
-    const avatar = useAppSelector(state => state.profile.avatar)
-    const email = useAppSelector(state => state.profile.email)
-    const isLoggedIn = useAppSelector(state => state.login._id)
+    let name = useAppSelector(state => state.profile.userData.name)
+    const avatar = useAppSelector(state => state.profile.userData.avatar)
+    const email = useAppSelector(state => state.profile.userData.email)
+    const isLoggedIn = useAppSelector(state => state.login.isLoggedIn)
     const isLoading = useAppSelector(state => state.profile.loading)
 
 
     const [value, setValue] = useState<string>(name)
-    const [newFoto, setNewFoto] = useState<string>(avatar)
+    const [newFoto, setNewFoto] = useState<any>(avatar)
     const [error, setError] = useState<string | null>(null)
 
 
@@ -31,8 +34,7 @@ const Profile = () => {
         }
         setNewFoto('https://thumbs.dreamstime.com/b/funny-hand-drawn-head-protruding-hair-emoticon-laugh-isolated-transparent-background-line-emoticons-icon-smile-joy-emoji-120292109.jpg')
 
-        dispatch(updateUserInfoTC(value, newFoto))
-    }
+        dispatch(updateUserInfoTC(value,newFoto))}
 
     if (!isLoggedIn) return <Navigate to={PATH.login}/>
     return (
@@ -43,6 +45,7 @@ const Profile = () => {
                 <img src={newFoto}/>
 
             </div>
+
 
             <EditableTextLine text={value} setNewText={setValue}/>
             <div className={s.line}></div>

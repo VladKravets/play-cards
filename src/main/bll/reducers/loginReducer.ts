@@ -1,19 +1,11 @@
 import {BaseThunkType, InferActionsTypes} from "../store"
 import {authAPI, LoginParamsType} from "../../api/authAPI";
 import {profileActions} from "./profileReducer";
+import {Dispatch} from "redux";
+import {appActions} from "./appReducer";
 
 const initialState = {
-    _id: '',
-    email: '',
-    name: '',
-    avatar: '',
-    publicCardPacksCount: 0,
-    created: 0,
-    updated: 0,
-    isAdmin: false,
-    verified: false,
-    rememberMe: false,
-    error: '',
+    isLoggedIn: false,
     isLoading: false
 
 };
@@ -23,10 +15,9 @@ type LoginStateType = typeof initialState
 const loginReducer = (state: LoginStateType = initialState, action: LoginActionsTypes): LoginStateType => {
     switch (action.type) {
         case 'login/SET-IS-LOGGED-IN':
-            return {...state, ...action.payload}
+            return {...state, isLoggedIn: action.value}
         case "login/IS-LOADING":
             return {...state, isLoading: action.value}
-
         default:
             return state
     }
@@ -34,12 +25,13 @@ const loginReducer = (state: LoginStateType = initialState, action: LoginActions
 
 
 export const loginActions = {
-    setIsLoggedInAC: (payload: LoginStateType) => (
-        ({type: 'login/SET-IS-LOGGED-IN', payload} as const)
+    setIsLoggedInAC: (value: boolean) => (
+        ({type: 'login/SET-IS-LOGGED-IN', value} as const)
     ),
-    isLoading:(value:boolean)=>({
-            type:'login/IS-LOADING',value}as const
-    )
+    isLoading: (value: boolean) => ({
+            type: 'login/IS-LOADING', value
+        } as const
+    ),
 }
 
 
@@ -55,6 +47,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean = f
             .then(res => {
                 if (res) {
                     dispatch(loginActions.setIsLoggedInAC(res))
+                    dispatch(loginActions.setIsLoggedInAC(true))
                 } else {
                     alert('Упс...что-то не так с сервером')
                 }
@@ -66,11 +59,30 @@ export const loginTC = (email: string, password: string, rememberMe: boolean = f
 
                 dispatch(error)
             })
-            .finally(()=>{
+            .finally(() => {
                 dispatch(loginActions.isLoading(false))
             })
 
     }
+export const logoutThunkTC = () => (dispatch:Dispatch) => {
+    dispatch(loginActions.isLoading(true))
+    authAPI.logout()
+        .then((res) => {
+            dispatch(appActions.setErrorMessage(res.info))
+            dispatch(profileActions.setUserData(res))
+           dispatch(loginActions.setIsLoggedInAC(false))
+        })
+        .catch(e => {
+            const error = e.response
+                ? e.response.data.error
+                : (e.message + ', more details in the console');
+
+            dispatch(appActions.setErrorMessage(error));
+        })
+        .finally(() => {
+            dispatch(loginActions.isLoading(false));
+        });
+};
 
 export default loginReducer
 

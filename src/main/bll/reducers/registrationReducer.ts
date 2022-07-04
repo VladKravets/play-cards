@@ -39,13 +39,10 @@ export const registerUserTC = (email: string, password: string): BaseThunkType<R
 
         if (!res.error) {
             dispatch(registrationActions.setRegisteredStatus(true))
-        } else {
-            dispatch(registrationActions.setErrorMessage(res.error))
-            dispatch(registrationActions.setRegisteredStatus(false))
         }
 
     } catch(e: any) {
-        dispatch(registrationActions.setErrorMessage(e.message))
+        dispatch(registrationActions.setErrorMessage( e.response.data.error || e.message ))
         dispatch(registrationActions.setRegisteredStatus(false))
     }
 }

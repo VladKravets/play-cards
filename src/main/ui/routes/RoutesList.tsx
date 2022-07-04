@@ -18,7 +18,7 @@ export const PATH = {
 }
 
 export const ROUTES = [
-	{ label: 'Login', path: PATH.login, component: <Login /> },
+	{ label: '', path: PATH.login, component: <Login /> },
 	{ label: 'Registration', path: PATH.registration, component: <Registration /> },
 	{ label: 'New Password', path: PATH.newPassword, component: <NewPassword /> },
 	{ label: 'Password Recovery', path: PATH.passwordRecovery, component: <PasswordRecovery /> },
@@ -43,6 +43,7 @@ const RoutesList = () => {
 					backLink={<Link to="/">{"< go back home"}</Link>} />
 			} />
 		</Routes>
+
 	)
 }
 

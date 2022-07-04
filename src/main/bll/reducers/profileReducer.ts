@@ -1,77 +1,78 @@
-import { BaseThunkType, InferActionsTypes } from "../store"
+import {BaseThunkType, InferActionsTypes} from "../store";
 import {profileAPI} from "../../api/profileAPI";
 import {loginActions} from "./loginReducer";
-
+import {UserType} from "../../api/authAPI";
 
 const initialState = {
-        _id: '',
-        email: '',
-        name: '',
-        avatar: '',
+    userData: {
+        _id: "",
+        email: "",
+        name: "",
+        avatar: "",
         publicCardPacksCount: 0,
-        created: 0,
-        updated: 0,
+        created: "",
+        updated: "",
         isAdmin: false,
         verified: false,
         rememberMe: false,
-        error: '',
-    loading:false
+        __v: 0,
+        token: "",
+        tokenDeathTime: 0,
+    } as UserType,
+    loading: false,
+    error: "",
+    isLoggedIn: false
+};
 
-
-}
-
-const profileReducer = (state: ProfileStateType = initialState, action: ProfileActionsTypes): ProfileStateType => {
-    switch(action.type) {
-
-        case "profile/UPDATE-USER-INFO":
+const profileReducer = (
+    state: ProfileStateType = initialState,
+    action: ProfileActionsTypes
+): ProfileStateType => {
+    switch (action.type) {
+        case "profile/SET-USER-DATA":
             return {
-                ...state, ...action.profile
-            }
-        case 'login/SET-IS-LOGGED-IN':
-            return {...state, ...action.payload}
-        case "profile/IS-LOADING":
-            return {...state, loading: action.value}
-        default: return state
+                ...state,
+                userData: {...action.user},
+            };
+        case "profile/SET-ERROR-MESSAGE":
+            return {
+                ...state,
+                error: action.errorMessage
+            };
+        case "login/SET-IS-LOGGED-IN":
+            return {...state, isLoggedIn: action.value};
+        default:
+            return state;
     }
-}
-
+};
 
 //actions
 export const profileActions = {
-
-    updateUserInfo: (profile:ProfileStateType) => (
-        {type: 'profile/UPDATE-USER-INFO',profile} as const
-    ),
-    isLoading:(value:boolean)=>({
-        type:'profile/IS-LOADING',value}as const
-    )
-}
+    setUserData: (user: UserType) =>
+        ({type: "profile/SET-USER-DATA", user} as const),
+    setErrorMessage: (errorMessage: string) =>
+        ({type: "profile/SET-ERROR-MESSAGE", errorMessage} as const),
+};
 
 //thunks
- export const updateUserInfoTC = (name:string, avatar:string): BaseThunkType<ProfileActionsTypes> => async (dispatch) => {
-dispatch(profileActions.isLoading(true))
-     profileAPI.updateUserInfo(name, avatar)
-         .then(res => {
-             if (res) {
-                 dispatch(profileActions.updateUserInfo(res.updatedUser))
+export const updateUserInfoTC =
+    (name: string, avatar: any): BaseThunkType<ProfileActionsTypes> => async (dispatch) => {
 
-             } else {
-                 console.log('Some error')
-             }
-         })
-         .catch(e => {
-             const error = e.response
-                 ? e.response.data.error
-                 : (e.message + ', more details in the console');
+        try {
+            const res = await profileAPI.updateUserInfo(name, avatar)
 
-             dispatch(error)
-         })
-         .finally(()=>{
-             dispatch(profileActions.isLoading(false))
-         })
- }
+            if (!res.error) {
+                dispatch(profileActions.setUserData(res.updatedUser))
+            }
+
+        } catch (e: any) {
+            dispatch(profileActions.setErrorMessage(e.response.data.error || e.message))
+        }
+    };
 
 export default profileReducer
 
 export type ProfileStateType = typeof initialState
-export type ProfileActionsTypes = InferActionsTypes<typeof profileActions> | InferActionsTypes<typeof loginActions>
+export type ProfileActionsTypes =
+    | InferActionsTypes<typeof profileActions>
+    | ReturnType<typeof loginActions.setIsLoggedInAC>

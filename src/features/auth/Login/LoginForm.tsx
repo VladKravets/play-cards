@@ -31,7 +31,7 @@ const LoginForm = () => {
             validateField.isEmail(values.email, errors, 'email');
 
             validateField.required(values.password, errors, 'password');
-            validateField.minLength(values.password, errors, 'password', 8);
+			validateField.minLength(values.password, errors, 'password', 8);
 
             return errors;
         },
@@ -42,7 +42,7 @@ const LoginForm = () => {
     })
 
     const emailError = (formik.errors.email && formik.touched.email) ? formik.errors.email : ''
-    const passwordError = (formik.errors.password && formik.touched.password) ? formik.errors.password : ''
+	const passwordError = (formik.errors.password && formik.touched.password) ? formik.errors.password : ''
 
     return (
         <>
@@ -55,7 +55,7 @@ const LoginForm = () => {
                     {...formik.getFieldProps('email')}
                 />
 
-                <SuperInputText
+                <SuperInputText 
                     className={s.input}
                     type='password'
                     label='Password'
@@ -70,8 +70,8 @@ const LoginForm = () => {
                 </div>
                 <div className={s.rememberLoginBlock}>
 
-                    <SuperCheckbox
-                        spanClassName={s.rememberMe}
+                    <SuperCheckbox 
+                        spanClassName={s.rememberMe} 
                         {...formik.getFieldProps('rememberMe')}>
 
                         Remember me
