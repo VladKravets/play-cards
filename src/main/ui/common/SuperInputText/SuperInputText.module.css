@@ -1,12 +1,14 @@
 .wrapper {
     position: relative;
+    width: 100%;
     /* space for error message */
     padding-bottom: 24px;
 }
 
 .superInput {
     display: block;
-    width: 280px;
+    /* width: 280px; */
+    width: 100%;
     height: 46px;
     padding: 0 10px;
     font-size: 18px;
@@ -14,8 +16,7 @@
     border-radius: 4px;
     color: #343a40;
     outline: none;
-    /* todo: remove style */
-    border: 1px solid #1f701a;
+
 }
 
 .superInput:focus-visible {

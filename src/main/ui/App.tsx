@@ -1,35 +1,36 @@
-import React, {useCallback, useEffect} from 'react'
-import { initializeAppTC } from '../bll/reducers/appReducer';
+import React, {useEffect} from 'react'
+import {appActions, initializeAppTC} from '../bll/reducers/appReducer';
 import {useAppDispatch, useAppSelector} from '../bll/store';
 import './App.css'
 import Spinner from './common/Spinner/Spinner';
 import Header from './Header/Header';
 import RoutesList from './routes/RoutesList';
-import {logoutThunkTC} from "../bll/reducers/loginReducer";
 
 function App() {
 
-	const appStyle = {paddingTop: '40px'} // todo: remove (temporary style for fixed header)
+    const appStyle = {paddingTop: '40px'} // todo: remove (temporary style for fixed header)
 
-	const dispatch = useAppDispatch()
-	const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
-	useEffect(() => {
-		dispatch( initializeAppTC() )
-	}, [])
+    const dispatch = useAppDispatch()
+    const isAppInitialized = useAppSelector(state => state.app.isAppInitialized)
+    useEffect(() => {
+        dispatch(initializeAppTC())
+    }, [dispatch])
 
-	// todo: add some styles for Spinner 
-	return (
-		<div style={appStyle} className="App">
-			{!isAppInitialized
-				? <Spinner />
-				: <>
-					<Header />
-					<RoutesList />
-				  </>
-			}
+    // todo: add some styles for Spinner
+    return (
+        <div style={appStyle} className="App">
+            {!isAppInitialized
+                ? <div className='loader'>
+                    <Spinner/>
+                </div>
+                : <>
+                    <Header/>
+                    <RoutesList/>
+                </>
+            }
 
-		</div>
-	);
+        </div>
+    );
 }
 
 export default App

@@ -6,7 +6,7 @@ import s from './AuthBlock.module.css'
 const AuthBlock: FC<AuthBlockPropsType> = ({
 pageTitle, children, navBlockLabel, navLinkPath, navLinkTitle}) => {
 
-    const withNavBlock = (navBlockLabel && navLinkPath && navLinkTitle)
+    const withNavBlock = (navLinkPath && navLinkTitle)
 
     return (
         <div className={s.authBlock}>
@@ -19,10 +19,14 @@ pageTitle, children, navBlockLabel, navLinkPath, navLinkTitle}) => {
 
             {withNavBlock &&
                 <div className={s.navigationBlock}>
-                    <span className={s.navBlockLabel}>{navBlockLabel}</span>
+
+                    {navBlockLabel 
+                        && <span className={s.navBlockLabel}>{navBlockLabel}</span>
+                    }
                     <NavLink to={navLinkPath} className={s.navBlockLink}>
                         {navLinkTitle}
                     </NavLink>
+
                 </div>
             }
         </div>

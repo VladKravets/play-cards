@@ -2,6 +2,8 @@ import {BaseThunkType, InferActionsTypes} from "../store";
 import {profileAPI} from "../../api/profileAPI";
 import {loginActions} from "./loginReducer";
 import {UserType} from "../../api/authAPI";
+import  {appActions} from "./appReducer";
+import axios, {AxiosError} from "axios";
 
 const initialState = {
     userData: {
@@ -19,12 +21,12 @@ const initialState = {
         token: "",
         tokenDeathTime: 0,
     } as UserType,
-    loading: false,
+
     error: "",
-    isLoggedIn: false
+
 };
 
-const profileReducer = (
+export const profileReducer = (
     state: ProfileStateType = initialState,
     action: ProfileActionsTypes
 ): ProfileStateType => {
@@ -39,8 +41,7 @@ const profileReducer = (
                 ...state,
                 error: action.errorMessage
             };
-        case "login/SET-IS-LOGGED-IN":
-            return {...state, isLoggedIn: action.value};
+
         default:
             return state;
     }
@@ -52,27 +53,40 @@ export const profileActions = {
         ({type: "profile/SET-USER-DATA", user} as const),
     setErrorMessage: (errorMessage: string) =>
         ({type: "profile/SET-ERROR-MESSAGE", errorMessage} as const),
+    setLoading: (value: boolean) => (
+        {type: "profile/SET-LOADING", value} as const)
+
 };
 
 //thunks
 export const updateUserInfoTC =
-    (name: string, avatar: any): BaseThunkType<ProfileActionsTypes> => async (dispatch) => {
+    (name: string, avatar: string | null): BaseThunkType<ProfileActionsTypes> => async (dispatch) => {
+        dispatch(appActions.appSetStatusAC("loading"))
 
         try {
             const res = await profileAPI.updateUserInfo(name, avatar)
 
             if (!res.error) {
                 dispatch(profileActions.setUserData(res.updatedUser))
+                dispatch(appActions.appSetStatusAC("succeeded"))
             }
-
-        } catch (e: any) {
-            dispatch(profileActions.setErrorMessage(e.response.data.error || e.message))
+//type from valera
+        } catch (e) {
+            const err = e as Error | AxiosError<{ error: string }>
+            if (axios.isAxiosError(err)) {
+                const error = err.response?.data ? err.response.data.error : err.message
+                dispatch(profileActions.setErrorMessage(error))
+            } else {
+                dispatch(profileActions.setErrorMessage(`Native error ${err.message}`))
+            }
+           // dispatch(profileActions.setErrorMessage(e.response.data.error || e.message))
         }
-    };
+    }
+;
 
-export default profileReducer
 
 export type ProfileStateType = typeof initialState
 export type ProfileActionsTypes =
     | InferActionsTypes<typeof profileActions>
     | ReturnType<typeof loginActions.setIsLoggedInAC>
+    | InferActionsTypes<typeof appActions>

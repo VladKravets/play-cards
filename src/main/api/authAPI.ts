@@ -1,4 +1,15 @@
 import { apiBase } from "./apiBase"
+import { PATH } from '../../utils/path'
+
+const passwordRecoveryEmail = `
+<div style="background-color: lime; padding: 15px">
+    Someone requested a password change of FLASHCARDS profile.
+    If it wasn't you, please ignore this email.
+    Password recovery link: 
+    <a href='https://insane4l.github.io/flash-cards#${PATH.newPassword}?token=$token$'>
+        Change your password using this link
+    </a>
+</div>`
 
 
 export const authAPI = {
@@ -18,7 +29,23 @@ export const authAPI = {
     authMe() {
         return apiBase.post<AuthMeResponseType>(`auth/me`,{}).then(res => res.data)
     },
+
+    restorePasswordRequest(userEmail: string) {
+        return apiBase.post<RestorePassResponseType>(`auth/forgot`,
+            {email: userEmail, from: 'From MergatorsTeam KMB 51/1', message: passwordRecoveryEmail})
+            .then(res => res.data)
+    },
+
+    createNewPassword(password: string, resetPasswordToken: string) {
+        return apiBase.post<CreateNewPassResponseType>(`auth/set-new-password`,
+            {password, resetPasswordToken})
+            .then(res => res.data)
+    },
 }
+
+
+
+
 
 
 
@@ -77,4 +104,30 @@ export type UserType = {
     token: string
     tokenDeathTime: number
     avatar: null | string
+}
+
+
+
+type RestorePassResponseType = RestorePassSuccessResponseType & RestorePassFailureResponseType
+type RestorePassSuccessResponseType = {
+    info: string
+    success: boolean
+    answer: boolean
+    html: boolean
+}
+type RestorePassFailureResponseType = {
+    error: string
+    email: string
+    emailRegExp: {}
+    in: string
+}
+
+
+
+type CreateNewPassResponseType = CreateNewPassSuccessResponseType & CreateNewPassFailureResponseType
+type CreateNewPassSuccessResponseType = {
+    info: string
+}
+type CreateNewPassFailureResponseType = {
+    error: string
 }

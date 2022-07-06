@@ -7,10 +7,13 @@ import { validateField } from '../../../utils/fieldValidators'
 import s from './Registration.module.css'
 import { registerUserTC } from '../../../main/bll/reducers/registrationReducer'
 
-
+// AuthBlock: error, trigger, loadingStatus
+// todo: handle error with snackbar
+// todo: isLoadig -> add flat spinner
 const RegistrationFrom = () => {
 
 	const dispatch = useAppDispatch()
+
 
 	const formik = useFormik({
 		initialValues: {

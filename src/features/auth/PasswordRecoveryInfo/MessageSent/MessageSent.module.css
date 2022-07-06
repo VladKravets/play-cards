@@ -1,0 +1,136 @@
+:root {
+	--message-sent-primary: #2a9924;
+	--message-sent-secondary: #fff;
+}
+
+
+.animation {
+	/* width: 540px; */
+	width: 100%;
+	height: 34px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.i_mail {
+	width: 40px;
+	height: 30px;
+	border-radius: 5% 5%;
+	border: 2px solid black;
+	position: relative;
+	animation: transformS 0.3s linear;
+}
+
+.i_mail:after,
+.i_mail .mail_anim:after {
+    content: '';
+    position: absolute;
+    bottom:5px; left:5px;
+    width:15px;
+    height:4px;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+}
+.i_mail:before,
+.i_mail .mail_anim:before {
+    content: '';
+    position: absolute;
+    top:5px; right:5px;
+    width:7px;
+    height:6px;
+    background:black;
+}
+@keyframes transformS {
+    50% {
+        transform: scale(0.5, 0.5);
+        opacity: 0.5;
+    }
+}
+.i_mail .mail_anim {
+    /* @extend .i-mail; */
+    width: 40px;
+	height: 30px;
+	border-radius: 5% 5%;
+	border: 2px solid black;
+	position: relative;
+	animation: transformS 0.3s linear;
+    margin: -2px 0 0 -2px;
+    animation: moveL 0.8s linear;
+}
+
+
+@keyframes moveL {
+    100% {
+        transform: translateX(220px) rotateY(90deg);
+    }
+}
+
+
+.line {
+	/* padding: 1px 210px; */
+	/* padding: 1px 100px; */
+    width: 70%;
+    height: 1px;
+	background-image: linear-gradient(
+		to right,
+		#000 30%,
+		rgba(255, 255, 255, 0) 0%
+	);
+	background-position: top;
+	background-size: 15px 2px;
+	background-repeat: repeat-x;
+}
+.i_success,
+.i_success .success_anim {
+	width: 40px;
+	height: 30px;
+	border-radius: 5% 5%;
+	border: 2px solid var(--message-sent-primary);
+	position: relative;
+	animation: transformB 0.3s 1.4s linear forwards;
+}
+.i_success:after {
+    animation: transformBA 0.3s 1.4s linear forwards;
+}
+
+.i_success:after,
+.i_success .success_anim:after {
+    content: '';
+    position: absolute;
+    bottom:12px; left:11px;
+    width:15px;
+    height:8px;
+    border-bottom: 2px solid var(--message-sent-primary);
+    border-left: 2px solid var(--message-sent-primary);
+    transform: rotate(-45deg);
+}
+@keyframes transformB {
+    50% {
+        transform: scale(1.5, 1.5);
+        background: var(--message-sent-primary);
+    }
+    100% {
+        background: var(--message-sent-primary);
+    }
+}
+@keyframes transformBA {
+    100% {
+        border-bottom: 2px solid var(--message-sent-secondary);
+        border-left: 2px solid var(--message-sent-secondary);
+    }
+}
+
+.i_success .success_anim {
+    /* @extend .i-success; */
+    margin: -2px 0 0 -2px;
+    animation: moveR 0.8s 1s linear;
+}
+
+@keyframes moveR {
+    0% {
+        transform: translateX(-220px) rotateY(90deg);
+    }
+    50% {
+        transform: translateX(0) rotateY(0);
+    }
+}

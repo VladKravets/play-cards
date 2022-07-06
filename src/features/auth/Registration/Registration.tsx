@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { registrationActions } from '../../../main/bll/reducers/registrationReducer'
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store'
-import { PATH } from '../../../main/ui/routes/RoutesList'
+import { PATH } from '../../../utils/path'
 import AuthBlock from '../AuthBlock'
 import RegistrationFrom from './RegistrationFrom'
 
@@ -18,9 +18,9 @@ const Registration = () => {
 		}
 	}, [])
 
+
+	
 	if (isRegisteredSuccessfully) return <Navigate to={PATH.login}/>
-	// todo: Add snackbar with message "Registered successfully"
-	// or auto login when successfully registered (discuss with team)
 
 	return (
 		<AuthBlock 

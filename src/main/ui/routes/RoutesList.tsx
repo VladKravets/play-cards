@@ -2,26 +2,20 @@ import React from 'react'
 import { Link, Navigate, Route, Routes } from 'react-router-dom'
 import Login from '../../../features/auth/Login/Login'
 import NewPassword from '../../../features/auth/NewPassword/NewPassword'
-import PasswordRecovery from '../../../features/auth/PasswordRecovery/PasswordRecovery'
+import { PasswordRecovery } from '../../../features/auth/PasswordRecovery/PasswordRecovery'
+import { PasswordRecoveryInfo } from '../../../features/auth/PasswordRecoveryInfo/PasswordRecoveryInfo'
 import Registration from '../../../features/auth/Registration/Registration'
 import ComponentsDemo from '../../../features/demo/ComponentsDemo'
-import Profile from '../../../features/profile/Profile'
+import { PATH } from '../../../utils/path'
+import {Profile} from '../../../features/profile/Profile'
 import Error404 from './Error404/Error404'
-
-export const PATH = {
-	login: '/login' as const,
-	registration: '/registration' as const,
-	newPassword: '/new-password' as const,
-	passwordRecovery: '/password-recovery' as const,
-	profile: '/profile' as const,
-	componentsDemo: '/components-demo' as const,
-}
 
 export const ROUTES = [
 	{ label: '', path: PATH.login, component: <Login /> },
 	{ label: 'Registration', path: PATH.registration, component: <Registration /> },
 	{ label: 'New Password', path: PATH.newPassword, component: <NewPassword /> },
 	{ label: 'Password Recovery', path: PATH.passwordRecovery, component: <PasswordRecovery /> },
+	{ label: 'Password Recovery Info', path: PATH.passwordRecoveryInfo, component: <PasswordRecoveryInfo /> },
 	{ label: 'Profile', path: PATH.profile, component: <Profile /> },
 	{ label: 'Components Demo', path: PATH.componentsDemo, component: <ComponentsDemo /> },
 ]
@@ -43,7 +37,6 @@ const RoutesList = () => {
 					backLink={<Link to="/">{"< go back home"}</Link>} />
 			} />
 		</Routes>
-
 	)
 }
 

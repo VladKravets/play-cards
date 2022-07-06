@@ -3,7 +3,7 @@ import s from "./Login.module.css";
 import SuperInputText from "../../../main/ui/common/SuperInputText/SuperInputText";
 import SuperCheckbox from "../../../main/ui/common/SuperCheckbox/SuperCheckbox";
 import {NavLink} from "react-router-dom";
-import {PATH} from "../../../main/ui/routes/RoutesList";
+import { PATH } from '../../../utils/path';
 import SuperButton from "../../../main/ui/common/SuperButton/SuperButton";
 import {useFormik} from "formik";
 import {loginTC} from "../../../main/bll/reducers/loginReducer";
@@ -46,7 +46,7 @@ const LoginForm = () => {
 
     return (
         <>
-            <form onSubmit={formik.handleSubmit}>
+            <form className={s.loginForm} onSubmit={formik.handleSubmit}>
                 <SuperInputText
                     className={s.input}
                     type="email"

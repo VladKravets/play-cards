@@ -4,9 +4,10 @@ import { BaseThunkType, InferActionsTypes } from "../store"
 const initialState = {
     isRegistered: false,
     error: '',
+    isLoading: false
 }
 
-const registrationReducer = (state: RegistrationStateType = initialState, action: RegistrationActionsTypes): RegistrationStateType => {
+export const registrationReducer = (state: RegistrationStateType = initialState, action: RegistrationActionsTypes): RegistrationStateType => {
     switch(action.type) {
         case 'fc/registration/SUCCESSFULLY_REGISTERED':
         case 'fc/registration/SET_ERROR_MESSAGE':
@@ -29,12 +30,16 @@ export const registrationActions = {
     ),
     setErrorMessage: (error: string) => (
         {type: 'fc/registration/SET_ERROR_MESSAGE', payload: {error}} as const
-    )
+    ),
+    setLoadingStatus: (loadingStatus: boolean) => (
+        {type: 'fc/registration/SET-LOADING-STATUS', loadingStatus} as const
+    ),
 }
 
 
 export const registerUserTC = (email: string, password: string): BaseThunkType<RegistrationActionsTypes> => async (dispatch) => {
     try {
+        dispatch( registrationActions.setLoadingStatus(true) )
         const res = await authAPI.register(email, password)
 
         if (!res.error) {
@@ -44,13 +49,16 @@ export const registerUserTC = (email: string, password: string): BaseThunkType<R
     } catch(e: any) {
         dispatch(registrationActions.setErrorMessage( e.response.data.error || e.message ))
         dispatch(registrationActions.setRegisteredStatus(false))
+
+    } finally {
+        dispatch( registrationActions.setLoadingStatus(false) )
     }
 }
 
 
 
 
-export default registrationReducer
+
 
 type RegistrationStateType = typeof initialState
 export type RegistrationActionsTypes = InferActionsTypes<typeof registrationActions>
