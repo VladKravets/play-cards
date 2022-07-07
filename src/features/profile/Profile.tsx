@@ -12,7 +12,8 @@ import {appActions} from "../../main/bll/reducers/appReducer";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import {PATH} from "../../utils/path";
-
+import {Card} from "@mui/material";
+import {Cards} from "../cards/Cards";
 
 
 export const Profile = () => {
@@ -67,7 +68,8 @@ export const Profile = () => {
                 }}/>
                 <div className={s.line}/>
                 <span className={s.underText}>Email</span>
-                <SuperButton className={s.btn} onClick={updateUserInfoHandler} disabled={isLoading === 'loading'}>Save</SuperButton>
+                <SuperButton className={s.btn} onClick={updateUserInfoHandler}
+                             disabled={isLoading === 'loading'}>Save</SuperButton>
 
                 <Snackbar open={isError !== ''} autoHideDuration={3000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="error" sx={{width: '100%'}}>
@@ -76,9 +78,9 @@ export const Profile = () => {
                 </Snackbar>
                 {isLoading === 'loading' && <Spinner/>}
 
-
             </div>
 
+                <Cards/>
         </>
 
     )

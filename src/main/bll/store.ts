@@ -4,7 +4,7 @@ import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
 
 import appReducer, { AppActionsTypes } from "./reducers/appReducer"
 import loginReducer, { LoginActionsTypes } from './reducers/loginReducer'
-import cardsReducer, { CardsActionsTypes } from './reducers/cardsReducer'
+import {CardsActionsTypes, cardsReducer} from './reducers/cardsReducer'
 
 
 import {PasswordRecoveryActionsTypes, passwordRecoveryReducer} from "./reducers/passwordRecoveryReducer";
