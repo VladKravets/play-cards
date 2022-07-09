@@ -3,22 +3,23 @@ import {apiBase} from "./apiBase";
 
 export const packsAPI = {
 
-
     getPacks(data: DataGetPacksType) {
+
         return apiBase.get<CardPacksType>(`cards/pack`, {params: data})
-            .then(res=>{
+            .then(res => {
                 return res.data
             })
 
     },
-    addPack(data:DataAddPackType){
-        return apiBase.post<NewPackType>(`cards/pack`,{params:data})
+    addNewPack(name: string) {
+        return apiBase.post<NewPackType>(`cards/pack`, {cardsPack: {name}})
     },
-    deletePack(packId:string){
-        return apiBase.delete<DeletedPackType>(`cards/pack?${packId}` )
+    deletePack(packId: string) {
+
+        apiBase.delete<DeletedPackType>(`cards/pack?id=${packId}`)
     },
-    updatePack(data:DataUpdatePackType){
-        return apiBase.put<UpdatePackType>(`cards/pack`,{params:data})
+    updatePack(packId: string, name: string) {
+        return apiBase.put<UpdatePackType>(`cards/pack`, {cardsPack: {_id: packId, name}})
     }
 
 }
@@ -56,37 +57,37 @@ export type PackType = {
     cardsCount: number
     type: string
     rating: number
-    created: Date
-    updated: Date
+    created: string
+    updated: string
     more_id: string
     __v: number
 }
-type DataAddPackType={
-    cardsPack:{
-        name:string
-        deckCover:string
-        private:boolean
+type DataAddPackType = {
+    cardsPack: {
+        name: string
+        deckCover: string
+        private: boolean
     }
 }
-type NewPackType={
-    newCardsPack:PackType
-    token:string
-    tokenDeathTime:number
+type NewPackType = {
+    newCardsPack: PackType
+    token: string
+    tokenDeathTime: number
 }
-type DeletedPackType={
-    deletedCardsPack:PackType
-    token:string
-    tokenDeathTime:number
+type DeletedPackType = {
+    deletedCardsPack: PackType
+    token: string
+    tokenDeathTime: number
 }
-type DataUpdatePackType={
-    cardsPack:{
-        _id:string
-        name:string
+export type DataUpdatePackType = {
+    cardsPack: {
+        _id: string
+        name: string
     }
 }
-type UpdatePackType={
-    updatedCardsPack:PackType
-    token:string
-    tokenDeathTime:number
+type UpdatePackType = {
+    updatedCardsPack: PackType
+    token: string
+    tokenDeathTime: number
 
 }
