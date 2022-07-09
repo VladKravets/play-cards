@@ -19,14 +19,34 @@
 
 }
 
+.superInput.passwordType {
+    padding: 0 50px 0 10px;
+}
+
 .superInput:focus-visible {
     outline: none;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2)
 }
 
 .label {
+    position: relative;
+}
+
+.passwordTypeIcon {
+    position: absolute;
+    bottom: 8px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    user-select: none;
+    -webkit-user-drag: none;
+    cursor: pointer;
+}
+
+.title {
     /* todo: remove style */
     opacity: 0.5;
+    cursor: pointer;
 }
 
 .errorInput {

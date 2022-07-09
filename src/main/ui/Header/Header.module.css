@@ -1,3 +1,65 @@
+.headerSpaceStub {
+    position: relative;
+    z-index: -66;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* 20px for FlatProgress component */
+    height: calc(55px + 20px); 
+    background-color: transparent;
+}
+.wrapper {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55px;
+    background-color: #F9F9FE;
+}
+
+.headerContainer {
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    align-items: center;
+}
+
+.navLinks{
+    display: flex;
+    height: 100%;
+}
+/* .navLinks > *{
+    margin-right: 20px;
+}
+.navLinks > *:last-child {
+    margin-right: 0;
+} */
+.navLink {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+    font-weight: 600;
+    color: #c480da;
+    transition: 400ms background-color, 400ms color;
+}
+.navLink:hover {
+    background-color: #d0c0d6;
+    /* color: #FFF; */
+}
+.navLinkActive {
+    background-color: rgba(0,0,0,.2);
+    
+    background-color: #c480da !important;
+    color: #fff;
+}
+
 
 .logOut img{
     max-height: 45px;
