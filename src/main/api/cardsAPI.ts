@@ -2,7 +2,7 @@ import {apiBase} from "./apiBase";
 
 export const cardsAPI = {
     getCards(data: SendCardsQueryParams) {
-        return apiBase.get<CardsResponseType>(`cards/card`, {data})
+        return apiBase.get<CardsResponseType>(`cards/card`, {params: data})
     },
     addCard(cardsPack_id: string, question: string, answer: string) {
         return apiBase.post<SendCardsQueryParams>(`cards/card`, {data: {cardsPack_id, question, answer}})
@@ -33,7 +33,8 @@ export type SendCardsQueryParams = {
     cardQuestion?: string
     cardsPack_id: string
     max?: number
-    sortCards?: string;
+    min?: number
+    sortCards?: string
     page?: number
     pageCount?: number
 }
