@@ -27,7 +27,8 @@ const Registration = () => {
 			pageTitle="Sign Up"
 			navBlockLabel="Already registered?"
 			navLinkPath={PATH.login}
-			navLinkTitle="Sign In">
+			navLinkTitle="Sign In"
+			withRocket="left">
 				
 			<RegistrationFrom/>
 		</AuthBlock>

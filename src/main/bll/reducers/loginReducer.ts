@@ -1,11 +1,12 @@
 import {BaseThunkType, InferActionsTypes} from "../store"
 import {authAPI} from "../../api/authAPI";
 import {profileActions} from "./profileReducer";
-import {Dispatch} from "redux";
 import {appActions} from "./appReducer";
 
 const initialState = {
     isLoggedIn: false,
+    error: '',
+    isLoading: false,
 };
 type LoginStateType = typeof initialState
 
@@ -13,8 +14,9 @@ type LoginStateType = typeof initialState
 const loginReducer = (state: LoginStateType = initialState, action: LoginActionsTypes): LoginStateType => {
     switch (action.type) {
         case 'login/SET-IS-LOGGED-IN':
-            return {...state, isLoggedIn: action.value}
-
+        case 'login/SET-LOADING-STATUS':
+        case 'login/SET-ERROR-MESSAGE':
+            return {...state, ...action.payload}
         default:
             return state
     }
@@ -22,59 +24,45 @@ const loginReducer = (state: LoginStateType = initialState, action: LoginActions
 
 
 export const loginActions = {
-    setIsLoggedInAC: (value: boolean) => (
-        ({type: 'login/SET-IS-LOGGED-IN', value} as const)
+    setIsLoggedInAC: (isLoggedIn: boolean) => (
+        ({type: 'login/SET-IS-LOGGED-IN', payload: {isLoggedIn}} as const)
+    ),
+    setLoadingStatus: (loadingStatus: boolean) => (
+        {type: 'login/SET-LOADING-STATUS', payload: {loadingStatus}} as const
+    ),
+    setErrorMessage: (error: string) => (
+        {type: 'login/SET-ERROR-MESSAGE', payload: {error}} as const
     )
 }
 
 
-// export const someThunk = (): BaseThunkType<LoginActionsTypes> => async (dispatch) => {
-//     await dispatch(...)
-//     dispatch(...)
-// }
-
 export const loginTC = (email: string, password: string, rememberMe: boolean = false): BaseThunkType<LoginActionsTypes> =>
-    async (dispatch) => {
-        dispatch(appActions.appSetStatusAC('loading'))
-        authAPI.login(email, password, rememberMe)
-            .then(res => {
-                if (res) {
-                    dispatch(loginActions.setIsLoggedInAC(res))
-                    dispatch(profileActions.setUserData(res))
-                    dispatch(loginActions.setIsLoggedInAC(true))
-                } else {
-                    alert('Упс...что-то не так с сервером')
-                }
-            })
-            .catch(e => {
-                const error = e.response
-                    ? e.response.data.error
-                    : (e.message + ', more details in the console');
+async (dispatch) => {
 
-                dispatch(error)
-            })
-            .finally(() => {
-                dispatch(appActions.appSetStatusAC('succeeded'))
-            })
+    dispatch( loginActions.setLoadingStatus(true) )
 
-    }
-export const logoutThunkTC = () => (dispatch: Dispatch) => {
-    dispatch(appActions.appSetStatusAC('loading'))
-    authAPI.logout()
-        .then((res) => {
-            dispatch(loginActions.setIsLoggedInAC(false))
+    authAPI.login(email, password, rememberMe)
+        .then(res => {
+            if (res) {
+                dispatch(profileActions.setUserData(res))
+                dispatch(loginActions.setIsLoggedInAC(true))
+            } else {
+                alert('Упс...что-то не так с сервером')
+            }
         })
         .catch(e => {
             const error = e.response
                 ? e.response.data.error
                 : (e.message + ', more details in the console');
 
-            dispatch(appActions.setErrorMessage(error));
+            dispatch( loginActions.setErrorMessage(error) )
         })
         .finally(() => {
-            dispatch(appActions.appSetStatusAC('succeeded'))
-        });
-};
+            dispatch( loginActions.setLoadingStatus(false) )
+        })
+
+}
+
 
 export default loginReducer
 

@@ -9,15 +9,21 @@ import ComponentsDemo from '../../../features/demo/ComponentsDemo'
 import { PATH } from '../../../utils/path'
 import {Profile} from '../../../features/profile/Profile'
 import Error404 from './Error404/Error404'
+import { CardsList } from '../../../features/cards/CardsList/CardsList'
+import { PacksList } from '../../../features/cards/PacksList/PacksList'
+import { Training } from '../../../features/training/Training'
 
 export const ROUTES = [
-	{ label: '', path: PATH.login, component: <Login /> },
+	{ label: 'Login', path: PATH.login, component: <Login /> },
 	{ label: 'Registration', path: PATH.registration, component: <Registration /> },
-	{ label: 'New Password', path: PATH.newPassword, component: <NewPassword /> },
-	{ label: 'Password Recovery', path: PATH.passwordRecovery, component: <PasswordRecovery /> },
-	{ label: 'Password Recovery Info', path: PATH.passwordRecoveryInfo, component: <PasswordRecoveryInfo /> },
+	{ label: 'NewPass', path: PATH.newPassword, component: <NewPassword /> },
+	{ label: 'PassRecovery', path: PATH.passwordRecovery, component: <PasswordRecovery /> },
+	{ label: 'PassRecoveryInfo', path: PATH.passwordRecoveryInfo, component: <PasswordRecoveryInfo /> },
 	{ label: 'Profile', path: PATH.profile, component: <Profile /> },
-	{ label: 'Components Demo', path: PATH.componentsDemo, component: <ComponentsDemo /> },
+	{ label: 'PacksList', path: PATH.packsList, component: <PacksList /> },
+	{ label: 'CardsList', path: PATH.cardsList, component: <CardsList /> },
+	{ label: 'Training', path: PATH.training, component: <Training /> },
+	{ label: 'ComponentsDemo', path: PATH.componentsDemo, component: <ComponentsDemo /> },
 ]
 
 

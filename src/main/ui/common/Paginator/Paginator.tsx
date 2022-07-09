@@ -5,7 +5,7 @@ import nextArrow from '../../../../assets/icons/paginator-right-arrow.svg'
 import s from './Paginator.module.css'
 
 
-export const Paginator: React.FC<PropsType> = ({currentPage, totalItemsCount, pageSize, onPageSelected, portionSize = 10}) => {
+const Paginator: React.FC<PropsType> = ({currentPage, totalItemsCount, pageSize, onPageSelected, portionSize = 10}) => {
 
     const [currentPortion, setCurrentPortion] = useState(currentPage);
 
@@ -73,6 +73,8 @@ export const Paginator: React.FC<PropsType> = ({currentPage, totalItemsCount, pa
     )
 }
 
+
+export default Paginator
 
 
 type PropsType = {

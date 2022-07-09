@@ -37,7 +37,7 @@ const LoginForm = () => {
         },
         onSubmit: values => {
             dispatch(loginTC(values.email, values.password, values.rememberMe));
-            formik.resetForm();
+
         },
     })
 
@@ -55,7 +55,8 @@ const LoginForm = () => {
                     {...formik.getFieldProps('email')}
                 />
 
-                <SuperInputText 
+                <SuperInputText
+                    passwordType 
                     className={s.input}
                     type='password'
                     label='Password'

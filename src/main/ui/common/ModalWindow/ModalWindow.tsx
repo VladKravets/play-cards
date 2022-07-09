@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback, useEffect } from 'react'
 import s from './ModalWindow.module.css'
 
 const ModalWindow: FC<ModalWindowPropsType> = React.memo( (props) => {
@@ -19,6 +19,14 @@ const ModalWindow: FC<ModalWindowPropsType> = React.memo( (props) => {
         }
     }
 
+    const onEscPressHandler = useCallback( (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+            console.log('aaaaaa');
+            
+            onClose && onClose(e)
+        }
+    }, [onClose])
+
     const finalModalCN = children ? s.modal : `${s.modal} ${s.modal_withoutChildren}`
 
     if (!open) return <div className={s.hidden_stub}></div>
@@ -34,11 +42,26 @@ const ModalWindow: FC<ModalWindowPropsType> = React.memo( (props) => {
                     {children}
                 </div>
             </div>
+            <EscapePressListener callback={onEscPressHandler} />
         </div>
     )
 })
 
 export default ModalWindow
+
+
+const EscapePressListener = ({callback}: {callback: (e: KeyboardEvent) => void}) => {
+
+    useEffect(() => {
+        window.addEventListener('keydown', callback)
+
+        return () => {
+            window.removeEventListener('keydown', callback)
+        }
+    }, [])
+
+    return <div className={s.hidden_stub}></div>
+}
 
 
 type ModalWindowPropsType = {
@@ -47,7 +70,7 @@ type ModalWindowPropsType = {
     /**
      * This is the function that should change the open property to false
      */
-    onClose: (e: CloseModalEventType) => void
+    onClose: (e: CloseModalEventType | KeyboardEvent) => void
     /**
      * Close modal on overlay click. Default = true
      */

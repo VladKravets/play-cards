@@ -2,7 +2,7 @@ import {BaseThunkType, InferActionsTypes} from "../store";
 import {profileAPI} from "../../api/profileAPI";
 import {loginActions} from "./loginReducer";
 import {UserType} from "../../api/authAPI";
-import  {appActions} from "./appReducer";
+import {appActions} from "./appReducer";
 import axios, {AxiosError} from "axios";
 
 const initialState = {
@@ -23,7 +23,7 @@ const initialState = {
     } as UserType,
 
     error: "",
-
+    isLoading: false
 };
 
 export const profileReducer = (
@@ -41,7 +41,11 @@ export const profileReducer = (
                 ...state,
                 error: action.errorMessage
             };
-
+        case "profile/SET-LOADING":
+            return {
+                ...state,
+                isLoading: action.value
+            };
         default:
             return state;
     }
@@ -55,22 +59,20 @@ export const profileActions = {
         ({type: "profile/SET-ERROR-MESSAGE", errorMessage} as const),
     setLoading: (value: boolean) => (
         {type: "profile/SET-LOADING", value} as const)
-
-};
+}
 
 //thunks
 export const updateUserInfoTC =
     (name: string, avatar: string | null): BaseThunkType<ProfileActionsTypes> => async (dispatch) => {
-        dispatch(appActions.appSetStatusAC("loading"))
+        dispatch(appActions.appSetStatusAC('loading'))
 
         try {
             const res = await profileAPI.updateUserInfo(name, avatar)
-
             if (!res.error) {
                 dispatch(profileActions.setUserData(res.updatedUser))
-                dispatch(appActions.appSetStatusAC("succeeded"))
+
             }
-//type from valera
+
         } catch (e) {
             const err = e as Error | AxiosError<{ error: string }>
             if (axios.isAxiosError(err)) {
@@ -79,11 +81,14 @@ export const updateUserInfoTC =
             } else {
                 dispatch(profileActions.setErrorMessage(`Native error ${err.message}`))
             }
-           // dispatch(profileActions.setErrorMessage(e.response.data.error || e.message))
+        }
+        finally {
+            dispatch(appActions.appSetStatusAC('succeeded'))
+
+
         }
     }
 ;
-
 
 export type ProfileStateType = typeof initialState
 export type ProfileActionsTypes =

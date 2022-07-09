@@ -1,17 +1,15 @@
 import {createStore, combineReducers, applyMiddleware, Action} from 'redux'
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux'
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from 'redux-thunk'
-
 import appReducer, { AppActionsTypes } from "./reducers/appReducer"
 import loginReducer, { LoginActionsTypes } from './reducers/loginReducer'
 import {CardsActionsTypes, cardsReducer} from './reducers/cardsReducer'
-
-
 import {PasswordRecoveryActionsTypes, passwordRecoveryReducer} from "./reducers/passwordRecoveryReducer";
 import {RegistrationActionsTypes, registrationReducer} from "./reducers/registrationReducer";
 import {ProfileActionsTypes, profileReducer} from "./reducers/profileReducer";
-import {packsReducer} from "./reducers/packsReducer";
+import {PacksActionsTypes, packsReducer} from "./reducers/packsReducer";
 import {NewPasswordActionsTypes, newPasswordReducer} from "./reducers/newPasswordReducer";
+
 
 const rootReducer = combineReducers({
     app: appReducer,
@@ -39,6 +37,7 @@ export default store
 
 type AppRootActionsType = AppActionsTypes | LoginActionsTypes | NewPasswordActionsTypes
 | PasswordRecoveryActionsTypes | RegistrationActionsTypes | ProfileActionsTypes | CardsActionsTypes 
+| PacksActionsTypes
 
 
 export type AppRootStateType = ReturnType<typeof rootReducer>

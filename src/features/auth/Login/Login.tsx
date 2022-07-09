@@ -7,10 +7,7 @@ import AuthBlock from '../AuthBlock';
 import Spinner from "../../../main/ui/common/Spinner/Spinner";
 
 const Login = () => {
-    const isLoggedIn = useAppSelector(state => state.login.isLoggedIn)
     const status = useAppSelector(state => state.app.status)
-
-    if (isLoggedIn) return <Navigate to={PATH.profile}/>
 
     return (
         <>
@@ -18,7 +15,8 @@ const Login = () => {
                 pageTitle="Sign In"
                 navBlockLabel="Don’t have an account?"
                 navLinkPath={PATH.registration}
-                navLinkTitle="Sign Up">
+                navLinkTitle="Sign Up"
+                withRocket="right">
                 <LoginForm/>
                 {status === 'loading' && <Spinner/>}
             </AuthBlock>

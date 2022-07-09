@@ -53,22 +53,41 @@ export const initializeAppTC = (): BaseThunkType<AppActionsTypes> => async (disp
         if (!res.error) {
             dispatch(profileActions.setUserData(res))
             dispatch(loginActions.setIsLoggedInAC(true))
+            dispatch(appActions.appSetStatusAC('succeeded'))
         }
 
     } catch (e: any) {
         dispatch(appActions.setErrorMessage(e.response.data.error || e.message))
+        dispatch(appActions.appSetStatusAC('failed'))
 
     } finally {
-        dispatch(appActions.appSetStatusAC('succeeded'))
         dispatch(appActions.initializedSuccessfully())
     }
 }
 
 
+export const logoutThunkTC = (): BaseThunkType<AppActionsTypes> => async (dispatch) => {
+
+    dispatch(appActions.appSetStatusAC('loading'))
+
+    authAPI.logout()
+        .then(() => {
+            dispatch(loginActions.setIsLoggedInAC(false))
+        })
+        .catch(e => {
+            const error = e.response
+                ? e.response.data.error
+                : (e.message + ', more details in the console');
+
+            dispatch(appActions.setErrorMessage(error));
+        })
+        .finally(() => {
+            dispatch(appActions.appSetStatusAC('idle'))
+        });
+};
+
+
 export default appReducer
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed';
 type AppStateType = typeof initialState
-export type AppActionsTypes =
-    InferActionsTypes<typeof appActions>
-    | InferActionsTypes<typeof loginActions>
-    | InferActionsTypes<typeof profileActions>
+export type AppActionsTypes = InferActionsTypes<typeof appActions> |InferActionsTypes<typeof loginActions>| InferActionsTypes<typeof profileActions>

@@ -41,6 +41,7 @@ export const NewPasswordForm = () => {
         <form className={s.newPasswordForm} onSubmit={formik.handleSubmit}>
 
             <SuperInputText
+                passwordType
                 type='password'
                 label='Password'
                 error={passwordError}
