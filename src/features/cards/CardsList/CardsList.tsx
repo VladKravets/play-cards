@@ -9,8 +9,8 @@ import { Navigate } from 'react-router-dom'
 import { PATH } from '../../../utils/path'
 import { packsActions } from "../../../main/bll/reducers/packsReducer";
 import SuperButton from "../../../main/ui/common/SuperButton/SuperButton";
-import { SearchForm } from "../SearchForm/SearchForm";
 import { CardsTable } from "./CardsTable/CardsTable";
+import { CardsSearchInput } from "./CardsSearchInput/CardsSearchInput";
 
 
 
@@ -20,7 +20,7 @@ export const CardsList = () => {
 
     const isLoggedIn = useAppSelector(state => state.login.isLoggedIn)
     const selectedPackId = useAppSelector(state => state.packs.selectedPackId)
-    const status = useAppSelector(state => state.app.status)
+    const appStatus = useAppSelector(state => state.app.status)
     const cards = useAppSelector(state => state.cards.cards)
     
     // const cardsTotalCount = useAppSelector(state => state.cards.cardsTotalCount)
@@ -58,7 +58,7 @@ export const CardsList = () => {
 
     return (
         <div className={s.mainContainer}>
-            {status === 'succeeded' 
+            {appStatus === 'succeeded' 
                 ? <Paper className={s.container} style={{padding: '15px'}}>
 
                     <SuperButton className={s.btnsBack} onClick={backHandler} btnStyle="primary">
@@ -66,7 +66,7 @@ export const CardsList = () => {
                     </SuperButton>
 
                     <div style={{marginTop: '20px'}}>
-                        <SearchForm />
+                        <CardsSearchInput />
                     </div>
 
                     <CardsTable cards={cards} selectedPackId={selectedPackId} page={page}/>

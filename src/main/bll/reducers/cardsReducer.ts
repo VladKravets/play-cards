@@ -59,7 +59,7 @@ export const cardsActions = {
 //thunk
 export const getCardsTC = (data: SendCardsQueryParams): BaseThunkType<CardsActionsTypes> => async (dispatch) => {
     try {
-        dispatch(appActions.appSetStatusAC('loading'))
+        dispatch(appActions.setAppStatus('loading'))
         dispatch(cardsActions.setCards([], 0))
         const res = await cardsAPI.getCards(data)
         dispatch(cardsActions.setCards(res.data.cards, res.data.cardsTotalCount))
@@ -67,54 +67,54 @@ export const getCardsTC = (data: SendCardsQueryParams): BaseThunkType<CardsActio
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
             const error = err.response?.data ? err.response.data.error : err.message
-            dispatch(appActions.setErrorMessage(error))
+            dispatch(appActions.setAppErrorMessage(error))
         }
     } finally {
-        dispatch(appActions.appSetStatusAC('succeeded'))
+        dispatch(appActions.setAppStatus('succeeded'))
     }
 }
 
 export const addCardTC = (cardsPack_id: string, question: string, answer: string): BaseThunkType<CardsActionsTypes> => async (dispatch) => {
     try {
-        dispatch(appActions.appSetStatusAC('loading'))
+        dispatch(appActions.setAppStatus('loading'))
         await cardsAPI.addCard(cardsPack_id, question, answer)
         await dispatch(getCardsTC({cardsPack_id}))
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
             const error = err.response?.data ? err.response.data.error : err.message
-            dispatch(appActions.setErrorMessage(error))
+            dispatch(appActions.setAppErrorMessage(error))
         }
     } finally {
-        dispatch(appActions.appSetStatusAC('succeeded'))
+        dispatch(appActions.setAppStatus('succeeded'))
     }
 }
 export const removeCardTC = (cardId: string): BaseThunkType<CardsActionsTypes> => async (dispatch) => {
     try {
-        dispatch(appActions.appSetStatusAC('loading'))
+        dispatch(appActions.setAppStatus('loading'))
         await cardsAPI.deleteCard(cardId)
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
             const error = err.response?.data ? err.response.data.error : err.message
-            dispatch(appActions.setErrorMessage(error))
+            dispatch(appActions.setAppErrorMessage(error))
         }
     } finally {
-        dispatch(appActions.appSetStatusAC('succeeded'))
+        dispatch(appActions.setAppStatus('succeeded'))
     }
 }
 export const updateCardTC = (cardId: string, question: string): BaseThunkType<CardsActionsTypes> => async (dispatch) => {
     try {
-        dispatch(appActions.appSetStatusAC('loading'))
+        dispatch(appActions.setAppStatus('loading'))
         await cardsAPI.updateCard(cardId, question)
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
             const error = err.response?.data ? err.response.data.error : err.message
-            dispatch(appActions.setErrorMessage(error))
+            dispatch(appActions.setAppErrorMessage(error))
         }
     } finally {
-        dispatch(appActions.appSetStatusAC('succeeded'))
+        dispatch(appActions.setAppStatus('succeeded'))
     }
 }
 

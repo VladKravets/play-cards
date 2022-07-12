@@ -1,7 +1,7 @@
 import React from 'react'
-import { addNewPackTC } from '../../../main/bll/reducers/packsReducer'
-import { useAppDispatch } from '../../../main/bll/store'
-import SuperButton from '../../../main/ui/common/SuperButton/SuperButton'
+import { addNewPackTC } from '../../../../main/bll/reducers/packsReducer'
+import { useAppDispatch } from '../../../../main/bll/store'
+import SuperButton from '../../../../main/ui/common/SuperButton/SuperButton'
 import s from './AddNewPack.module.css'
 
 export const AddNewPack = () => {
