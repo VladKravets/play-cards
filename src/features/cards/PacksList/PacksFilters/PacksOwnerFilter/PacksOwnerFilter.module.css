@@ -1,0 +1,11 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 0;
+}
+
+.btn {
+    width: 49%;
+    font-weight: 600;
+}

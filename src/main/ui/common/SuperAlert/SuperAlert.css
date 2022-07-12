@@ -1,0 +1,45 @@
+.super-alert {
+    position: fixed;
+    z-index: 999;
+    right: 10px;
+    bottom: 10px;
+    max-width: 440px;
+    padding: 22px;
+    border-radius: 4px;
+    /* bgc when 'variant' prop = undefined */
+    background-color: #025fff;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.super-alert.info {
+    background-color: #6b15b7;
+}
+.super-alert.error {
+    background-color: red;
+}
+.super-alert.success {
+    background-color: #00b700;
+}
+.super-alert.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+
+
+
+
+/* media queries */
+@media screen and (max-width: 560px) {
+    .super-alert {
+        position: fixed;
+        right: 5px;
+        max-width: 300px;
+    }
+}
