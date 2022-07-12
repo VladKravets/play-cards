@@ -5,7 +5,6 @@ import {appActions} from "./appReducer";
 
 const initialState = {
     isLoggedIn: false,
-    error: '',
     isLoading: false,
 };
 type LoginStateType = typeof initialState
@@ -15,7 +14,6 @@ const loginReducer = (state: LoginStateType = initialState, action: LoginActions
     switch (action.type) {
         case 'login/SET-IS-LOGGED-IN':
         case 'login/SET-LOADING-STATUS':
-        case 'login/SET-ERROR-MESSAGE':
             return {...state, ...action.payload}
         default:
             return state
@@ -30,9 +28,6 @@ export const loginActions = {
     setLoadingStatus: (loadingStatus: boolean) => (
         {type: 'login/SET-LOADING-STATUS', payload: {loadingStatus}} as const
     ),
-    setErrorMessage: (error: string) => (
-        {type: 'login/SET-ERROR-MESSAGE', payload: {error}} as const
-    )
 }
 
 
@@ -55,7 +50,7 @@ async (dispatch) => {
                 ? e.response.data.error
                 : (e.message + ', more details in the console');
 
-            dispatch( loginActions.setErrorMessage(error) )
+            dispatch( appActions.setAppErrorMessage(error) )
         })
         .finally(() => {
             dispatch( loginActions.setLoadingStatus(false) )
