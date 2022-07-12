@@ -6,17 +6,21 @@ import reportWebVitals from './reportWebVitals';
 import {HashRouter} from 'react-router-dom';
 import {Provider} from "react-redux";
 import store from "./main/bll/store";
+import { ErrorBoundary } from './main/ui/ErrorBoundary/ErrorBoundary';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
 );
 
 root.render(
-        <Provider store={store}>
-            <HashRouter>
+    
+    <Provider store={store}>
+        <HashRouter>
+            <ErrorBoundary>
                 <App/>
-            </HashRouter>
-        </Provider>
+            </ErrorBoundary>
+        </HashRouter>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

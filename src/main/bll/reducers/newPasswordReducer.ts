@@ -1,10 +1,10 @@
 import { authAPI } from "../../api/authAPI"
 import { BaseThunkType, InferActionsTypes } from "../store"
+import { appActions } from "./appReducer"
 
 const initialState = {
     newPasswordToken: '',
     isPasswordSuccessfullySet: false,
-    error: '',
     isLoading: false,
 }
 
@@ -19,11 +19,6 @@ export const newPasswordReducer = (state: NewPasswordStateType = initialState, a
             return {
                 ...state,
                 isPasswordSuccessfullySet: action.status
-            }
-        case 'fc/newPassword/SET_ERROR_MESSAGE':
-            return {
-                ...state,
-                error: action.error,
             }
         case 'fc/newPassword/SET-LOADING-STATUS':
             return {
@@ -46,9 +41,6 @@ export const newPasswordActions = {
     setNewPasswordSuccess: (status: boolean) => (
         {type: 'fc/newPassword/NEW-PASSWORD-SUCCESSFULLY-SET', status} as const
     ),
-    setErrorMessage: (error: string) => (
-        {type: 'fc/newPassword/SET_ERROR_MESSAGE', error} as const
-    ),
     setLoadingStatus: (loadingStatus: boolean) => (
         {type: 'fc/newPassword/SET-LOADING-STATUS', loadingStatus} as const
     ),
@@ -66,7 +58,7 @@ export const createNewPasswordTC = (newPassword: string, token: string): BaseThu
         }
 
     } catch(e: any) {
-        dispatch( newPasswordActions.setErrorMessage( e.response.data.error || e.message ) )
+        dispatch( appActions.setAppErrorMessage( e.response.data.error || e.message ) )
 
     } finally {
         dispatch( newPasswordActions.setLoadingStatus(false) )
@@ -78,4 +70,4 @@ export const createNewPasswordTC = (newPassword: string, token: string): BaseThu
 
 
 type NewPasswordStateType = typeof initialState
-export type NewPasswordActionsTypes = InferActionsTypes<typeof newPasswordActions>
+export type NewPasswordActionsTypes = InferActionsTypes<typeof newPasswordActions> | InferActionsTypes<typeof appActions>

@@ -38,7 +38,7 @@ const Header = () => {
 
                 <div className={s.header}>
 
-                    <MainLogo size={20}/>
+                    <MainLogo />
 
                     <div className={s.navLinks}>
                         {mappedLinks}

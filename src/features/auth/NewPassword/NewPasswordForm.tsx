@@ -7,9 +7,7 @@ import { validateField } from '../../../utils/fieldValidators'
 import s from './NewPassword.module.css'
 import { createNewPasswordTC } from '../../../main/bll/reducers/newPasswordReducer'
 
-// AuthBlock: error, trigger, loadingStatus
-// todo: handle error with snackbar
-// todo: isLoadig -> add flat spinner
+
 export const NewPasswordForm = () => {
 
     const dispatch = useAppDispatch()
@@ -42,7 +40,6 @@ export const NewPasswordForm = () => {
 
             <SuperInputText
                 passwordType
-                type='password'
                 label='Password'
                 error={passwordError}
                 {...formik.getFieldProps('password')} />

@@ -49,7 +49,6 @@ const LoginForm = () => {
             <form className={s.loginForm} onSubmit={formik.handleSubmit}>
                 <SuperInputText
                     className={s.input}
-                    type="email"
                     label='Email'
                     error={emailError}
                     {...formik.getFieldProps('email')}
@@ -58,7 +57,6 @@ const LoginForm = () => {
                 <SuperInputText
                     passwordType 
                     className={s.input}
-                    type='password'
                     label='Password'
                     error={passwordError}
                     {...formik.getFieldProps('password')}

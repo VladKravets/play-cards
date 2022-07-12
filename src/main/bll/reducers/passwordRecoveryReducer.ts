@@ -1,11 +1,11 @@
 import { authAPI } from "../../api/authAPI"
 import { BaseThunkType, InferActionsTypes } from "../store"
+import { appActions } from "./appReducer"
 
 const initialState = {
     isEmailMessageSent: false,
     specifiedEmail: '',
     isLoading: false,
-    error: '',
 }
 
 export const passwordRecoveryReducer = (state: PasswordRecoveryStateType = initialState, action: PasswordRecoveryActionsTypes): PasswordRecoveryStateType => {
@@ -21,12 +21,6 @@ export const passwordRecoveryReducer = (state: PasswordRecoveryStateType = initi
                 ...state,
                 isLoading: action.loadingStatus,
             }
-        case 'fc/recovery/SET_ERROR_MESSAGE':
-            return {
-                ...state,
-                error: action.error,
-            }
-
 
         default: return state
     }
@@ -42,9 +36,6 @@ export const passwordRecoveryActions = {
     setLoadingStatus: (loadingStatus: boolean) => (
         {type: 'fc/recovery/SET-LOADING-STATUS', loadingStatus} as const
     ),
-    setErrorMessage: (error: string) => (
-        {type: 'fc/recovery/SET_ERROR_MESSAGE', error} as const
-    )
 }
 
 
@@ -60,7 +51,7 @@ export const requestPasswordRecoveryTC = (userEmail: string): BaseThunkType<Pass
         }
 
     } catch(e: any) {
-        dispatch(passwordRecoveryActions.setErrorMessage( e.response.data.error || e.message ))
+        dispatch(appActions.setAppErrorMessage( e.response.data.error || e.message ))
 
     } finally {
         dispatch( passwordRecoveryActions.setLoadingStatus(false) )
@@ -71,4 +62,5 @@ export const requestPasswordRecoveryTC = (userEmail: string): BaseThunkType<Pass
 
 
 type PasswordRecoveryStateType = typeof initialState
-export type PasswordRecoveryActionsTypes = InferActionsTypes<typeof passwordRecoveryActions>
+export type PasswordRecoveryActionsTypes = InferActionsTypes<typeof passwordRecoveryActions> 
+| InferActionsTypes<typeof appActions>

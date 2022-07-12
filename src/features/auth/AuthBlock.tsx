@@ -6,6 +6,7 @@ import { MainLogo } from '../../main/ui/common/MainLogo/MainLogo'
 import { PATH } from '../../utils/path'
 import s from './AuthBlock.module.css'
 
+// todo: isLoadig?: boolean prop -> add flat spinner
 /** Authorization block common template (set different props and different forms as children) */
 const AuthBlock: FC<AuthBlockPropsType> = ({
 pageTitle, children, navBlockLabel, navLinkPath, navLinkTitle, withRocket }) => {
@@ -34,7 +35,7 @@ pageTitle, children, navBlockLabel, navLinkPath, navLinkTitle, withRocket }) => 
         <div className={s.wrapper}>
             <div className={`${s.authBlock} ${rocketPositionCN}`}>
                 <div className={s.authBox}>
-                    <MainLogo className={s.mainLogo} />
+                    <MainLogo size={22} className={s.mainLogo} />
                     <h1 className={s.pageTitle}>
                         {pageTitle}
                     </h1>

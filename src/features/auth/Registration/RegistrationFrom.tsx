@@ -7,9 +7,7 @@ import { validateField } from '../../../utils/fieldValidators'
 import s from './Registration.module.css'
 import { registerUserTC } from '../../../main/bll/reducers/registrationReducer'
 
-// AuthBlock: error, trigger, loadingStatus
-// todo: handle error with snackbar
-// todo: isLoadig -> add flat spinner
+
 const RegistrationFrom = () => {
 
 	const dispatch = useAppDispatch()
@@ -51,21 +49,19 @@ const RegistrationFrom = () => {
 		<form className={s.regForm} onSubmit={formik.handleSubmit}>
 
 			<SuperInputText
-				type='email'
+
 				label='Email'
 				error={emailError}
 				{...formik.getFieldProps('email')} />
 
 			<SuperInputText
 				passwordType 
-				type='password'
 				label='Password'
 				error={passwordError}
 				{...formik.getFieldProps('password')} />
 
 			<SuperInputText
 				passwordType
-				type='password'
 				label='Confirm password'
 				error={password2Error}
 				{...formik.getFieldProps('password2')} />

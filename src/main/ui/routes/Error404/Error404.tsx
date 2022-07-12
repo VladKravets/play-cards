@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import s from './Error404.module.css'
 import astronautImg from '../../../../assets/images/astronaut404.png'
+import { useAppDispatch } from '../../../bll/store'
+import { appActions } from '../../../bll/reducers/appReducer'
 
 const Error404: React.FC<Error404PropsType> = ({customText, backLink}) => {
+
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+
+        dispatch(appActions.setAppErrorMessage('Page not found, please check url address'))
+    }, [])
+
     return (
         <div className={s.main__wrapper}>
             <div className={s.images__wrapper}>

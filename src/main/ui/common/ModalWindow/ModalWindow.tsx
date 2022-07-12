@@ -21,7 +21,6 @@ const ModalWindow: FC<ModalWindowPropsType> = React.memo( (props) => {
 
     const onEscPressHandler = useCallback( (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
-            console.log('aaaaaa');
             
             onClose && onClose(e)
         }
