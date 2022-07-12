@@ -4,7 +4,6 @@ import {apiBase} from "./apiBase";
 export const packsAPI = {
 
     getPacks(data: DataGetPacksType) {
-
         return apiBase.get<CardPacksType>(`cards/pack`, {params: data})
             .then(res => {
                 return res.data
@@ -23,6 +22,9 @@ export const packsAPI = {
     }
 
 }
+
+
+
 
 // types
 export type DataGetPacksType = {

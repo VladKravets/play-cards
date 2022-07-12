@@ -13,59 +13,53 @@ import {
     deletePackTC,
     editPackTC,
     learnPackTC,
-    packsActions,
-    setPacksListTC
 } from "../../../../main/bll/reducers/packsReducer";
 import SuperButton from "../../../../main/ui/common/SuperButton/SuperButton";
 import { PATH } from "../../../../utils/path";
 import s from './PacksTable.module.css'
 import { PackType } from '../../../../main/api/packListAPI';
+import Spinner from '../../../../main/ui/common/Spinner/Spinner';
 
 
 
-export const PacksTable = React.memo(() => {
+export const PacksTable: FC<PacksTablePropsType> = React.memo(({packs, authUserId, isLoading}) => {
 
-    const dispatch = useAppDispatch()
-    const packs = useAppSelector(state => state.packs.cardPacks)
-    const userId = useAppSelector(state => state.profile.userData._id)
+    const tableRows = packs.map(pack => (
+        <PacksTableRow key={pack._id} pack={pack} isOwner={authUserId === pack.user_id}/>
+    ))
 
-    useEffect(() => {
-        dispatch(setPacksListTC())
-
-        return () => {
-            dispatch( packsActions.setPacksList([]) )
-        }
-    }, [])
-
-
-    const tableRows = packs.map(pack => <PacksTableRow key={pack._id} pack={pack} isOwner={userId === pack.user_id}/>)
+    if (isLoading) return <Spinner />
 
     return (
-        <Grid container justifyContent={'center'}>
-            <div>
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
 
-                        <TableHead>
-                            <TableRow style={{backgroundColor: '#F9F9FE' }}>
-                                <TableCell align="left"> Name</TableCell>
-                                <TableCell align="center">Total cards</TableCell>
-                                <TableCell align="center">Last updated</TableCell>
-                                <TableCell align="center">Created by</TableCell>
-                                <TableCell align="center">Actions</TableCell>
-                            </TableRow>
-                        </TableHead>
+                    <PacksTableHead />
 
-                        <TableBody>
-                            { tableRows }
-                        </TableBody>
+                    <TableBody>
+                        { tableRows }
+                    </TableBody>
 
-                    </Table>
-                </TableContainer>
-            </div>
-        </Grid>
-    );
+                </Table>
+            </TableContainer>
+    )
 })
+
+
+
+const PacksTableHead = () => {
+    return (
+        <TableHead>
+            <TableRow style={{backgroundColor: '#F9F9FE' }}>
+                <TableCell align="left"> Name</TableCell>
+                <TableCell align="center">Total cards</TableCell>
+                <TableCell align="center">Last updated</TableCell>
+                <TableCell align="center">Created by</TableCell>
+                <TableCell align="center">Actions</TableCell>
+            </TableRow>
+        </TableHead>
+    )
+}
 
 
 
@@ -77,12 +71,13 @@ const PacksTableRow: FC<PacksTableRowPropsType> = ({pack, isOwner}) => {
 
     const deletePackHandler = (packId: string) => {
         dispatch(deletePackTC(packId))
-
     }
+
     const editPackNameHandler = (packId: string, name: string) => {
-        dispatch(editPackTC(packId, 't'))
+        dispatch(editPackTC(packId, name))
         return <Navigate to={'/cards'} />
     }
+
     const learnPackHandler = (packId: string) => {
         dispatch(learnPackTC(packId));
         navigate(PATH.training + packId);
@@ -129,6 +124,13 @@ const PacksTableRow: FC<PacksTableRowPropsType> = ({pack, isOwner}) => {
     )
 }
 
+
+
+type PacksTablePropsType = {
+    packs: PackType[]
+    authUserId: string
+    isLoading: boolean
+}
 
 type PacksTableRowPropsType = {
     pack: PackType
