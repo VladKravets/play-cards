@@ -1,24 +1,27 @@
 {
   "files": {
-    "main.css": "/play-cards/static/css/main.d77caeee.css",
-    "main.js": "/play-cards/static/js/main.4acf8ff2.js",
+    "main.css": "/play-cards/static/css/main.060eaa1f.css",
+    "main.js": "/play-cards/static/js/main.2ac36688.js",
     "static/js/787.3cdc8eeb.chunk.js": "/play-cards/static/js/787.3cdc8eeb.chunk.js",
     "static/media/callout404.png": "/play-cards/static/media/callout404.28043e3c62d095079cdd.png",
     "static/media/astronaut404.png": "/play-cards/static/media/astronaut404.2760983ea0614a474854.png",
+    "static/media/package.png": "/play-cards/static/media/package.2a9c112d00fdb4266089.png",
+    "static/media/edit.svg": "/play-cards/static/media/edit.c1e1a20f63f9428b8121d7d78182f7db.svg",
     "static/media/main_logo_icon.svg": "/play-cards/static/media/main_logo_icon.d36f4aca3bac1bbcf684fb3ea181f7b2.svg",
     "static/media/pencil.svg": "/play-cards/static/media/pencil.3b9367d420e8cb07e22db10b6d1b4e62.svg",
     "static/media/paginator-left-arrow.svg": "/play-cards/static/media/paginator-left-arrow.6c5c6d35c153348a4ca343427fa8689e.svg",
     "static/media/paginator-right-arrow.svg": "/play-cards/static/media/paginator-right-arrow.47390740f371bb447d8bb5232c7e9831.svg",
     "index.html": "/play-cards/index.html",
     "static/media/hide_pass.svg": "/play-cards/static/media/hide_pass.a0f78739c8ba88c84861aff52f017ed2.svg",
+    "static/media/exit.svg": "/play-cards/static/media/exit.ad41662461dbbc333a04c2a5145a1290.svg",
     "static/media/show_pass.svg": "/play-cards/static/media/show_pass.6b05b371fdeb813940d523864aca7812.svg",
     "static/media/more_info.svg": "/play-cards/static/media/more_info.579c68a90875836b14d6cbf52ad69e9b.svg",
-    "main.d77caeee.css.map": "/play-cards/static/css/main.d77caeee.css.map",
-    "main.4acf8ff2.js.map": "/play-cards/static/js/main.4acf8ff2.js.map",
+    "main.060eaa1f.css.map": "/play-cards/static/css/main.060eaa1f.css.map",
+    "main.2ac36688.js.map": "/play-cards/static/js/main.2ac36688.js.map",
     "787.3cdc8eeb.chunk.js.map": "/play-cards/static/js/787.3cdc8eeb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d77caeee.css",
-    "static/js/main.4acf8ff2.js"
+    "static/css/main.060eaa1f.css",
+    "static/js/main.2ac36688.js"
   ]
 }
