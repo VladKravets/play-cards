@@ -3,14 +3,15 @@ import { Navigate, useSearchParams } from 'react-router-dom'
 import { newPasswordActions } from '../../../main/bll/reducers/newPasswordReducer'
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store'
 import { PATH } from '../../../utils/path'
-import AuthBlock from '../AuthBlock'
+import { AuthBlock } from '../AuthBlock'
 import { NewPasswordForm } from './NewPasswordForm'
 
-const NewPassword = () => {
+export const NewPassword = () => {
 
 	const dispatch = useAppDispatch()
-	const [params, setParams] = useSearchParams()
+	const [params] = useSearchParams()
 	const isPasswordSuccessfullySet = useAppSelector(state => state.newPassword.isPasswordSuccessfullySet)
+	const isLoading = useAppSelector(state => state.newPassword.isLoading)
 
 	useEffect(() => {
 
@@ -26,6 +27,7 @@ const NewPassword = () => {
 	}, [])
 
 
+	if (!params.get('token')) return <Navigate to={PATH.passwordRecovery} />
 	if (isPasswordSuccessfullySet) return <Navigate to={PATH.login} />
 
 	return (
@@ -33,11 +35,10 @@ const NewPassword = () => {
 			pageTitle="Create new password"
 			navBlockLabel="Did you remember your password?"
 			navLinkPath={PATH.login}
-			navLinkTitle="Try logging in">
+			navLinkTitle="Try logging in"
+			isLoading={isLoading} >
 
-			<NewPasswordForm />
+			<NewPasswordForm isLoading={isLoading} />
 		</AuthBlock>
 	)
 }
-
-export default NewPassword

@@ -1,17 +1,18 @@
 import React from 'react'
 import { Link, Navigate, Route, Routes } from 'react-router-dom'
-import Login from '../../../features/auth/Login/Login'
-import NewPassword from '../../../features/auth/NewPassword/NewPassword'
+import { Login } from '../../../features/auth/Login/Login'
+import { NewPassword } from '../../../features/auth/NewPassword/NewPassword'
 import { PasswordRecovery } from '../../../features/auth/PasswordRecovery/PasswordRecovery'
 import { PasswordRecoveryInfo } from '../../../features/auth/PasswordRecoveryInfo/PasswordRecoveryInfo'
-import Registration from '../../../features/auth/Registration/Registration'
+import { Registration } from '../../../features/auth/Registration/Registration'
 import ComponentsDemo from '../../../features/demo/ComponentsDemo'
 import { PATH } from '../../../utils/path'
-import {Profile} from '../../../features/profile/Profile'
+import { Profile } from '../../../features/profile/Profile'
 import Error404 from './Error404/Error404'
 import { CardsList } from '../../../features/cards/CardsList/CardsList'
 import { PacksList } from '../../../features/cards/PacksList/PacksList'
 import { Training } from '../../../features/training/Training'
+import { About } from '../../../features/about/About'
 
 export const ROUTES = [
 	{ label: 'Login', path: PATH.login, component: <Login /> },
@@ -24,6 +25,7 @@ export const ROUTES = [
 	{ label: 'CardsList', path: PATH.cardsList, component: <CardsList /> },
 	{ label: 'Training', path: PATH.training, component: <Training /> },
 	{ label: 'ComponentsDemo', path: PATH.componentsDemo, component: <ComponentsDemo /> },
+	{ label: 'About', path: PATH.about, component: <About /> },
 ]
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import SuperInputText from "../../../main/ui/common/SuperInputText/SuperInputText"
 import SuperButton from "../../../main/ui/common/SuperButton/SuperButton"
 import { useFormik } from "formik"
@@ -8,7 +8,7 @@ import s from './Registration.module.css'
 import { registerUserTC } from '../../../main/bll/reducers/registrationReducer'
 
 
-const RegistrationFrom = () => {
+export const RegistrationFrom: FC<RegistrationFormPropsType> = ({isLoading}) => {
 
 	const dispatch = useAppDispatch()
 
@@ -67,15 +67,12 @@ const RegistrationFrom = () => {
 				{...formik.getFieldProps('password2')} />
 
 
-			<SuperButton type='submit' btnStyle='primary' className={s.submitBtn}>
+			<SuperButton type='submit' disabled={isLoading} btnStyle='primary' className={s.submitBtn}>
 				Register
 			</SuperButton>
 		</form>
 	)
 }
-
-export default RegistrationFrom
-
 
 
 
@@ -83,4 +80,8 @@ type RegFormErrorsType = {
 	email?: string
 	password?: string
 	password2?: string
+}
+
+type RegistrationFormPropsType = {
+    isLoading: boolean
 }

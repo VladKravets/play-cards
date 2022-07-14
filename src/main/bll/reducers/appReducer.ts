@@ -72,8 +72,15 @@ export const initializeAppTC = (): BaseThunkType<AppActionsTypes> => async (disp
         }
 
     } catch (e: any) {
-        dispatch(appActions.setAppErrorMessage(e.response.data.error || e.message))
-        dispatch(appActions.setAppStatus('failed'))
+
+        if (e.response?.data?.error === "you are not authorized /ᐠ-ꞈ-ᐟ\\") {
+            let message = "Welcome, Guest. Please login or register to use our service!"
+            dispatch(appActions.setAppInfoMessage(message))
+            dispatch(appActions.setAppStatus('idle'))
+        } else {
+            dispatch(appActions.setAppErrorMessage(e.response.data.error || e.message))
+            dispatch(appActions.setAppStatus('failed'))
+        }
 
     } finally {
         dispatch(appActions.initializedSuccessfully())

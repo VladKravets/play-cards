@@ -22,7 +22,8 @@ const initialState = {
         tokenDeathTime: 0,
     } as UserType,
 
-    isLoading: false
+    editMode: false,
+    isLoading: false,
 };
 
 
@@ -32,14 +33,11 @@ export const profileReducer = (
 ): ProfileStateType => {
     switch (action.type) {
         case "profile/SET-USER-DATA":
-            return {
-                ...state,
-                userData: {...action.user},
-            };
         case "profile/SET-LOADING":
+        case "profile/SET-EDIT-MODE":
             return {
                 ...state,
-                isLoading: action.value
+                ...action.payload
             };
         default:
             return state;
@@ -48,11 +46,14 @@ export const profileReducer = (
 
 //actions
 export const profileActions = {
-    setUserData: (user: UserType) =>
-        ({type: "profile/SET-USER-DATA", user} as const),
+    setUserData: (userData: UserType) => (
+        { type: "profile/SET-USER-DATA", payload: {userData} } as const),
 
-    setLoading: (value: boolean) => (
-        {type: "profile/SET-LOADING", value} as const),
+    setLoading: (isLoading: boolean) => (
+        { type: "profile/SET-LOADING", payload: {isLoading} } as const),
+
+    setEditMode: (editMode: boolean) => (
+        { type: "profile/SET-EDIT-MODE", payload: {editMode} } as const),
 }
 
 //thunks
@@ -62,9 +63,11 @@ export const updateUserInfoTC =
 
         try {
             const res = await profileAPI.updateUserInfo(name, avatar)
+
             if (!res.error) {
                 dispatch(profileActions.setUserData(res.updatedUser))
                 dispatch(profileActions.setLoading(false))
+                dispatch(profileActions.setEditMode(false))
             }
 
         } catch (e) {

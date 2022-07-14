@@ -1,0 +1,53 @@
+.wrapper {
+    min-height: 300px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.pageTitle {
+    font-size: 20px;
+}
+
+.editBtn {
+    background-color: transparent;
+    font-size: 15px;
+    color: blueviolet;
+    cursor: pointer;
+}
+
+.dataWrapper {
+    display: flex;
+}
+
+.dataList {
+    width: 350px;
+    margin-left: 35px;
+}
+
+.listItem {
+    padding: 14px;
+    border-bottom: 1px solid rgba(0,0,0, .1);
+}
+.listItem:nth-child(1) {
+    padding-top: 0;
+}
+.listItem:nth-last-child(1) {
+    border-bottom: none;
+}
+
+.label {
+    font-size: 15px;
+    line-height: 1.5em;
+    font-weight: 600;
+    color: #444444;
+}
+
+.data {
+    font-size: 14px;
+    color: #666666;
+}

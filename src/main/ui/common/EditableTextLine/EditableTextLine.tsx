@@ -51,6 +51,7 @@ text, setNewText, textCN, disabled = false, withEditIcon = true}) => {
     const finalTextLineCN = s.textLine
     + `${withEditIcon ? ` ${s.textLineWithIcon}` : ''}`
     + `${textCN ? ` ${textCN}` : ''}`
+    + `${disabled ? ` ${s.disabled}` : ''}`
 
     return (
         <div className={s.wrapper}>

@@ -27,6 +27,7 @@
 }
 
 .authBox {
+    position: relative;
     font-family: 'Montserrat', sans-serif;
     background-color: #F9F9FE;
     width: 413px;
@@ -35,6 +36,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.flatProgressbar {
+    width: calc(100% + 70px);
+    margin-top: 15px;
+    margin-left: -35px;
+    margin-right: -35px;
+}
+
+.hiddenStub {
+    width: 100%;
+    height: 15px;
 }
 
 .mainLogo {
@@ -46,13 +59,12 @@
     margin-bottom: 40px;
 }
 
-
 .navigationBlock {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .navBlockLabel {

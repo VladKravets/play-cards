@@ -25,8 +25,8 @@ export const loginActions = {
     setIsLoggedInAC: (isLoggedIn: boolean) => (
         ({type: 'login/SET-IS-LOGGED-IN', payload: {isLoggedIn}} as const)
     ),
-    setLoadingStatus: (loadingStatus: boolean) => (
-        {type: 'login/SET-LOADING-STATUS', payload: {loadingStatus}} as const
+    setLoadingStatus: (isLoading: boolean) => (
+        {type: 'login/SET-LOADING-STATUS', payload: {isLoading}} as const
     ),
 }
 

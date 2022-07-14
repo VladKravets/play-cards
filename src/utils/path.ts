@@ -9,4 +9,5 @@ export const PATH = {
 	cardsList: '/cards-list/:packId' as const,
 	training: '/training/:packId' as const,
 	componentsDemo: '/components-demo' as const,
+	about: '/about' as const,
 }

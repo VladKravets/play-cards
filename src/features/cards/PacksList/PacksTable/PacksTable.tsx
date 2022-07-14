@@ -1,5 +1,4 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
-import { Grid } from '@mui/material';
+import React, {FC} from 'react';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -7,19 +6,17 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../../main/bll/store";
-import {
-    deletePackTC,
-    editPackTC,
-    learnPackTC,
-} from "../../../../main/bll/reducers/packsReducer";
-import SuperButton from "../../../../main/ui/common/SuperButton/SuperButton";
-import { PATH } from "../../../../utils/path";
+import {Navigate, NavLink, useNavigate} from "react-router-dom";
+import {useAppDispatch} from "../../../../main/bll/store";
+import {deletePackTC, editPackTC, learnPackTC,} from "../../../../main/bll/reducers/packsReducer";
+import {PATH} from "../../../../utils/path";
 import s from './PacksTable.module.css'
-import { PackType } from '../../../../main/api/packListAPI';
+import {PackType} from '../../../../main/api/packListAPI';
 import Spinner from '../../../../main/ui/common/Spinner/Spinner';
-
+import trash from '../../../../assets/icons/delete.png'
+import editt from '../../../../assets/icons/edit.svg'
+import learn from '../../../../assets/icons/package.png'
+import ModalWindow from "../../../../main/ui/common/ModalWindow/ModalWindow";
 
 
 export const PacksTable: FC<PacksTablePropsType> = React.memo(({packs, authUserId, isLoading}) => {
@@ -102,22 +99,22 @@ const PacksTableRow: FC<PacksTableRowPropsType> = ({pack, isOwner}) => {
             </TableCell>
             <TableCell style={{ width: 300 }} align="center">
 
+
+                <img className={s.active_icon} src={learn}  onClick={() => learnPackHandler(pack._id)}/>
                 {isOwner
                     ? <>
-                        <SuperButton btnStyle="danger" onClick={() => {
-                            deletePackHandler(pack._id)}}>Delete
-                        </SuperButton>
-                        <SuperButton btnStyle="primary" onClick={() => {
-                            editPackNameHandler(pack._id, pack.name)}}>Edit
-                        </SuperButton> 
+
+                        <img className={s.active_icon} src={editt} onClick={() => {
+
+                            editPackNameHandler(pack._id, pack.name)}}/>
+                        <img className={s.active_icon} src={trash} onClick={() => {
+                            deletePackHandler(pack._id)}} alt='delete button' />
                     </>
+
                     : undefined}
-                    
 
 
-                <SuperButton btnStyle="success"
-                    onClick={() => learnPackHandler(pack._id)}
-                >Learn</SuperButton>
+
 
             </TableCell>
         </TableRow>

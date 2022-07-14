@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { useFormik } from 'formik'
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store'
 import SuperButton from '../../../main/ui/common/SuperButton/SuperButton'
@@ -8,10 +8,9 @@ import s from './NewPassword.module.css'
 import { createNewPasswordTC } from '../../../main/bll/reducers/newPasswordReducer'
 
 
-export const NewPasswordForm = () => {
+export const NewPasswordForm: FC<NewPasswordFormPropsType> = ({isLoading}) => {
 
     const dispatch = useAppDispatch()
-    const isLoading = useAppSelector(state => state.newPassword.isLoading)
     const newPasswordToken = useAppSelector(state => state.newPassword.newPasswordToken)
 
     const formik = useFormik({
@@ -51,4 +50,9 @@ export const NewPasswordForm = () => {
             </SuperButton>
         </form>
     )
+}
+
+
+type NewPasswordFormPropsType = {
+    isLoading: boolean
 }

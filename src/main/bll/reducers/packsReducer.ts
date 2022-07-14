@@ -109,10 +109,8 @@ export const deletePackTC =
 
             try {
                 await packsAPI.deletePack(packId)
-                // dispatch(setMyPacksListTC())
+                dispatch(requestPacksListTC())
 
-
-                dispatch(appActions.setAppStatus("succeeded"))
 
             } catch (e: any) {
                 dispatch( appActions.setAppErrorMessage( e.response?.data?.error || e.message ) )
@@ -126,8 +124,7 @@ export const editPackTC =
 
             try {
                 await packsAPI.updatePack(packId, name)
-                // dispatch(setMyPacksListTC())
-                dispatch(appActions.setAppStatus("succeeded"))
+                dispatch(requestPacksListTC())
 
             } catch (e: any) {
                 dispatch( appActions.setAppErrorMessage( e.response?.data?.error || e.message ) )

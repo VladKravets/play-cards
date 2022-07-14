@@ -2,18 +2,20 @@ import React, {useCallback} from 'react'
 import {NavLink} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from "../../bll/store";
 import {logoutThunkTC} from "../../bll/reducers/appReducer";
-import exitIcon from "../../../assets/icons/exit.png"
+import exitIcon from "../../../assets/icons/exit.svg"
 import s from "./Header.module.css"
 import { PATH } from '../../../utils/path';
 import { Profile } from '../../../features/profile/Profile';
 import { PacksList } from '../../../features/cards/PacksList/PacksList';
 import { FlatProgress } from '../common/FlatProgress/FlatProgress';
 import { MainLogo } from '../common/MainLogo/MainLogo';
+import { About } from '../../../features/about/About';
 
 
 const NavLinksList = [
     { label: 'Profile', path: PATH.profile, component: <Profile /> },
 	{ label: 'Packs list', path: PATH.packsList, component: <PacksList /> },
+	{ label: 'About', path: PATH.about, component: <About /> },
 ]
 
 const Header = () => {

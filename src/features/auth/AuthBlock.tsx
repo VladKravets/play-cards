@@ -1,15 +1,19 @@
 import React, { FC } from 'react'
 import { Navigate, NavLink } from 'react-router-dom'
 import { useAppSelector } from '../../main/bll/store'
+import { FlatProgress } from '../../main/ui/common/FlatProgress/FlatProgress'
 import FlyingRocket from '../../main/ui/common/FlyingRocket/FlyingRocket'
 import { MainLogo } from '../../main/ui/common/MainLogo/MainLogo'
 import { PATH } from '../../utils/path'
 import s from './AuthBlock.module.css'
 
-// todo: isLoadig?: boolean prop -> add flat spinner
+
 /** Authorization block common template (set different props and different forms as children) */
-const AuthBlock: FC<AuthBlockPropsType> = ({
-pageTitle, children, navBlockLabel, navLinkPath, navLinkTitle, withRocket }) => {
+export const AuthBlock: FC<AuthBlockPropsType> = React.memo( 
+({
+    pageTitle, children, navBlockLabel, navLinkPath,
+    navLinkTitle, withRocket, isLoading 
+}) => {
 
     const isLoggedIn = useAppSelector(state => state.login.isLoggedIn)
 
@@ -42,9 +46,11 @@ pageTitle, children, navBlockLabel, navLinkPath, navLinkTitle, withRocket }) => 
 
                     {children}
 
+                    
+                    <AuthBlockProgressbar isLoading={isLoading} />
+
                     {withNavBlock &&
                         <div className={s.navigationBlock}>
-
                             {navBlockLabel
                                 && <span className={s.navBlockLabel}>{navBlockLabel}</span>
                             }
@@ -64,9 +70,18 @@ pageTitle, children, navBlockLabel, navLinkPath, navLinkTitle, withRocket }) => 
             </div>
         </div>
     )
-}
+})
 
-export default AuthBlock
+const AuthBlockProgressbar = React.memo( ({isLoading}: {isLoading: boolean | undefined}) => {
+    return (
+        <div className={s.flatProgressbar}>
+            {isLoading
+                ? <FlatProgress isLoading={isLoading} withColoredLine/>
+                : <div className={s.hiddenStub}></div>
+            }
+        </div>
+    )
+})
 
 
 type AuthBlockPropsType = {
@@ -82,4 +97,5 @@ type AuthBlockPropsType = {
      * Show/hide block with animated rocket
      */
     withRocket?: "left" | "right"
+    isLoading?: boolean
 }

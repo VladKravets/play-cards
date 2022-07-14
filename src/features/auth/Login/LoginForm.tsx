@@ -1,23 +1,20 @@
-import React from 'react';
+import React, { FC } from 'react';
 import s from "./Login.module.css";
 import SuperInputText from "../../../main/ui/common/SuperInputText/SuperInputText";
 import SuperCheckbox from "../../../main/ui/common/SuperCheckbox/SuperCheckbox";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { PATH } from '../../../utils/path';
 import SuperButton from "../../../main/ui/common/SuperButton/SuperButton";
-import {useFormik} from "formik";
-import {loginTC} from "../../../main/bll/reducers/loginReducer";
-import {useAppDispatch} from "../../../main/bll/store";
+import { useFormik } from "formik";
+import { loginTC } from "../../../main/bll/reducers/loginReducer";
+import { useAppDispatch } from "../../../main/bll/store";
 import { validateField } from '../../../utils/fieldValidators';
 
-type FormikErrorType = {
-    email?: string
-    password?: string
-    rememberMe?: boolean
-}
 
-const LoginForm = () => {
-    const dispatch = useAppDispatch();
+export const LoginForm: FC<LoginFormPropsType> = React.memo( ({isLoading}) => {
+
+    const dispatch = useAppDispatch()
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -76,13 +73,22 @@ const LoginForm = () => {
                         Remember me
                     </SuperCheckbox>
 
-                    <SuperButton type='submit' btnStyle='primary' className={s.submit}>
+                    <SuperButton type='submit' disabled={isLoading} btnStyle='primary' className={s.submit}>
                         Login
                     </SuperButton>
                 </div>
             </form>
         </>
     );
-};
+})
 
-export default LoginForm;
+
+type FormikErrorType = {
+    email?: string
+    password?: string
+    rememberMe?: boolean
+}
+
+type LoginFormPropsType = {
+    isLoading: boolean
+}

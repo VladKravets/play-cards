@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
 import { passwordRecoveryActions } from '../../../main/bll/reducers/passwordRecoveryReducer'
 import { useAppDispatch, useAppSelector } from '../../../main/bll/store'
 import { PATH } from '../../../utils/path'
-import AuthBlock from '../AuthBlock'
+import { AuthBlock } from '../AuthBlock'
 import { MessageSent } from './MessageSent/MessageSent'
 import s from './PasswordRecoveryInfo.module.css'
 
@@ -19,6 +20,8 @@ export const PasswordRecoveryInfo = () => {
     }, [])
 
 
+	if (!userEmail) return <Navigate to={PATH.passwordRecovery} />
+
 	return (
 		<AuthBlock 
 			pageTitle="Check Email"
@@ -28,7 +31,7 @@ export const PasswordRecoveryInfo = () => {
 			<div className={s.wrapper}>
 				<MessageSent className={s.messageAnimation}/>
 				<div className={s.infoMessage}>
-					We’ve sent an Email with instructions {userEmail ? `to ${userEmail}` : ''}
+					We’ve sent an Email with instructions {`to ${userEmail}`}
 				</div>
 			</div>
 			

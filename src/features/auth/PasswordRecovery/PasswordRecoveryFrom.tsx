@@ -1,17 +1,16 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { useFormik } from 'formik'
 import { requestPasswordRecoveryTC } from '../../../main/bll/reducers/passwordRecoveryReducer'
-import { useAppDispatch, useAppSelector } from '../../../main/bll/store'
+import { useAppDispatch } from '../../../main/bll/store'
 import SuperButton from '../../../main/ui/common/SuperButton/SuperButton'
 import SuperInputText from '../../../main/ui/common/SuperInputText/SuperInputText'
 import { validateField } from '../../../utils/fieldValidators'
 import s from './PasswordRecovery.module.css'
 
 
-export const PasswordRecoveryFrom = () => {
+export const PasswordRecoveryFrom: FC<PassRecoveryFormPropsType> = ({isLoading}) => {
 
     const dispatch = useAppDispatch()
-    const isLoading = useAppSelector(state => state.passwordRecovery.isLoading)
         
 
     const formik = useFormik({
@@ -51,4 +50,9 @@ export const PasswordRecoveryFrom = () => {
             </SuperButton>
         </form>
     )
+}
+
+
+type PassRecoveryFormPropsType = {
+    isLoading: boolean
 }
