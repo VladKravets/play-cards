@@ -1,0 +1,76 @@
+.wrapper {
+    font-family: 'Open Sans', sans-serif;
+    color: #858383;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.aboutTitle {
+    font-size: 35px;
+    text-align: justify-all;
+    font-weight: 200;
+}
+
+.grayTitle {
+    color: #666666;
+    font-weight: 900;
+}
+
+.purpleTitle {
+    color: #6b15b6;
+}
+
+.aboutImage {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.infoBlock {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-weight: 200;
+    font-size: 25px;
+    padding: 50px;
+    margin-top:20px;
+    margin-bottom: -20px;
+}
+
+.leftBlock h2 {
+    text-align: center;
+    min-width: 200px;
+    padding-bottom: 50px;
+}
+
+.imageBlock {
+    margin: 50px;
+    text-align: justify-all;
+}
+.imageBlock h2{
+    margin: 30px;
+}
+
+.rightBlock h2 {
+    text-align: center;
+    min-width: 200px;
+    padding-bottom: 50px;
+}
+.buttonLearn{
+    padding: 25px 50px;
+    background-color: #c37fd9;
+    border-radius: 8px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #6b15b6;
+}
+.buttonLearn:hover {
+    background: #6b15b6;
+    color: #c37fd9;
+    transition: all .3s linear;
+}
+
+
