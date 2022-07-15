@@ -66,7 +66,6 @@ export const updateUserInfoTC =
 
             if (!res.error) {
                 dispatch(profileActions.setUserData(res.updatedUser))
-                dispatch(profileActions.setLoading(false))
                 dispatch(profileActions.setEditMode(false))
             }
 
@@ -78,6 +77,8 @@ export const updateUserInfoTC =
             } else {
                 dispatch(appActions.setAppErrorMessage(`Native error ${err.message}`))
             }
+        } finally {
+            dispatch(profileActions.setLoading(false))
         }
     }
 ;

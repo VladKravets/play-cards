@@ -35,6 +35,7 @@ export type DataGetPacksType = {
     page?: number
     pageCount?: number
     user_id?: string
+    _id?: string
 }
 export type CardPacksType = {
     cardPacks: PackType[]

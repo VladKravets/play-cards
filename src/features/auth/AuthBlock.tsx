@@ -33,7 +33,7 @@ export const AuthBlock: FC<AuthBlockPropsType> = React.memo(
     }
 
 
-	if (isLoggedIn) return <Navigate to={PATH.profile}/>
+	if (isLoggedIn) return <Navigate to={PATH.about}/>
 
     return (
         <div className={s.wrapper}>

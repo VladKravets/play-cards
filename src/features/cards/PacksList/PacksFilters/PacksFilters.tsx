@@ -14,7 +14,7 @@ export const PacksFilters = () => {
 
 
 	return (
-		<div className={s.packBlock}>
+		<div className={s.packFilters}>
 			<div className={s.filtersHeader}>
 				<h2 className={s.blockTitle}>Show packs</h2>
 				<SearchInfo />

@@ -1,13 +1,12 @@
-import {BaseThunkType, InferActionsTypes} from "../store";
-
+import { BaseThunkType, InferActionsTypes } from "../store";
 import { packsAPI, PackType } from "../../api/packListAPI";
-import axios, {AxiosError} from "axios";
-import {appActions} from "./appReducer";
+import { appActions } from "./appReducer";
 
 const initialState = {
     cardPacks: [] as PackType[],
     cardPacksTotalCount: 0,
     selectedPackId:'',
+    selectedPackName: '',
     // token: '',
     // tokenDeathTime: 0,
     filters: {
@@ -41,6 +40,10 @@ action: PacksActionsTypes): PacksStateType => {
             return {
                 ...state, selectedPackId: action.packId
             }
+        case "packs/SET-SELECTED-PACK-NAME":
+            return {
+                ...state, selectedPackName: action.packName
+            }
         case "packs/SET-PACKS-TOTAL-COUNT":
             return {
                 ...state, cardPacksTotalCount: action.totalCount
@@ -66,6 +69,7 @@ export const packsActions = {
     // editPackId: (packId: string) => ({type: "packs/EDIT-PACK-ID", packId} as const),
     // setLearnPack : (packId:string) => ({type: "packs/SET-LEARN-PACK-DATA", packId} as const),
     setSelectedPackId:(packId:string)=>({type:"packs/SET-SELECTED-PACK-ID", packId}as const),
+    setSelectedPackName:(packName:string)=>({type:"packs/SET-SELECTED-PACK-NAME", packName}as const),
     setPacksTotalCount:(totalCount:number)=>({type:"packs/SET-PACKS-TOTAL-COUNT", totalCount}as const),
 
 
@@ -99,6 +103,23 @@ export const requestPacksListTC = (): BaseThunkType<PacksActionsTypes> => async 
         dispatch( appActions.setAppErrorMessage( e.response?.data?.error || e.message ) )
         dispatch( appActions.setAppStatus("failed") )
     }
+}
+
+
+export const requestPackNameTC = (packUserId: string, packId: string): BaseThunkType<PacksActionsTypes> => async (dispatch) => {
+
+    try {
+        const userInfo = await packsAPI.getPacks({user_id: packUserId})
+        const selectedPack = userInfo.cardPacks.find(el => el._id === packId)
+
+        if (selectedPack && selectedPack.name) {
+            dispatch(packsActions.setSelectedPackName(selectedPack.name))
+        }
+        
+    } catch (e: any) {
+        dispatch( appActions.setAppErrorMessage( e.response?.data?.error || e.message ) )
+    }
+
 }
 
 
@@ -154,8 +175,8 @@ export const addNewPackTC =
             await packsAPI.addNewPack( name)
             try {
 
-                // dispatch(setMyPacksListTC())
-                dispatch(appActions.setAppStatus("succeeded"))
+                 dispatch(requestPacksListTC())
+
 
             } catch (e: any) {
                 dispatch( appActions.setAppErrorMessage( e.response?.data?.error || e.message ) )

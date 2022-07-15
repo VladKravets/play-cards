@@ -7,6 +7,8 @@ import {packsActions, requestPacksListTC} from "../../../main/bll/reducers/packs
 import { PacksTable } from './PacksTable/PacksTable'
 import Paginator from '../../../main/ui/common/Paginator/Paginator'
 import { PacksFilters } from './PacksFilters/PacksFilters'
+import {AddNewPack} from "./AddNewPack/AddNewPack";
+import Spinner from '../../../main/ui/common/Spinner/Spinner'
 
 export const PacksList = () => {
     const dispatch = useAppDispatch()
@@ -36,24 +38,39 @@ export const PacksList = () => {
         dispatch( packsActions.setCurrentPage(pageNum) )
     }
 
+
+
     if (!isLoggedIn) return <Navigate to={PATH.login}/>
 
     return (
         <div className={s.wrapper}>
+
             <PacksFilters />
-            <div className={s.packList}>
 
-                <PacksTable packs={cardPacks} authUserId={authUserId} isLoading={appStatus === 'loading'} />
+            {(appStatus === 'loading')
+                ? <div className={s.spinnerWrapper}></div>
 
-                {(cardPacksTotalCount > pageSize) 
-                    && <Paginator 
-                            currentPage={currentPage} 
-                            totalItemsCount={cardPacksTotalCount} 
-                            pageSize={pageSize} 
-                            onPageSelected={onPageChangedHandler} />
-                }
-            </div>
+                : <div className={s.packsList}>
 
+                    <div className={s.addNewPack}>
+                        <AddNewPack />
+                    </div>
+                    
+                    <div className={s.packsTable}>
+                        <PacksTable 
+                            packs={cardPacks}
+                            authUserId={authUserId} />
+                    </div>
+
+                    {(cardPacksTotalCount > pageSize) 
+                        && <Paginator 
+                                currentPage={currentPage} 
+                                totalItemsCount={cardPacksTotalCount} 
+                                pageSize={pageSize} 
+                                onPageSelected={onPageChangedHandler} />
+                    }
+                </div>
+            }
         </div>
     )
 }

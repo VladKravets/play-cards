@@ -4,14 +4,16 @@ export const cardsAPI = {
     getCards(data: SendCardsQueryParams) {
         return apiBase.get<CardsResponseType>(`cards/card`, {params: data})
     },
-    addCard(cardsPack_id: string, question: string, answer: string) {
-        return apiBase.post<SendCardsQueryParams>(`cards/card`, {data: {cardsPack_id, question, answer}})
+    addCard(newCard: NewCardDataType) {
+        return apiBase.post<NewCardDataType>(`cards/card`, {card: newCard})
     },
-    deleteCard(cardId: string) {
-        return apiBase.delete(`cards/card`, {data: {cardId}})
+    deleteCard(id: string) {
+        return apiBase.delete(`cards/card`, {params: {id}})
+            .then(response => response.data);
     },
-    updateCard(_id: string, question: string) {
-        return apiBase.put(`cards/card`, {data: {_id, question}})
+    updateCard(cardModel: UpdateCardModelType) {
+        return apiBase.put(`cards/card`, {card: cardModel})
+            .then(response => response.data);
     }
 }
 
@@ -47,4 +49,16 @@ export type CardsResponseType = {
     pageCount: number
     packUserId: string
 }
+export type NewCardDataType = {
+    cardsPack_id: string
+    question?: string
+    answer?: string
+    grade?: number
+    shots?: number
+    answerImg?: string
+    questionImg?: string
+    questionVideo?: string
+    answerVideo?: string
+};
+export type UpdateCardModelType = {_id: string} & Partial<Omit<CardType, "_id">>;
 export type SortType = '0updated' | '1updated'

@@ -16,7 +16,7 @@ export const ProfileData: FC<ProfileDataPropsType> = React.memo( ({activateEditM
         {label: 'Public packs created', data: `${publicCardPacksCount}`},
     ]
     
-    const mappedItems = userDataList.map(el => <UserDataListItem label={el.label} data={el.data}/>)
+    const mappedItems = userDataList.map(el => <UserDataListItem key={el.label} label={el.label} data={el.data}/>)
 
     return (
         <div className={s.wrapper}>

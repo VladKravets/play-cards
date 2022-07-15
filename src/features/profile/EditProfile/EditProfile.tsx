@@ -6,8 +6,8 @@ import SuperButton from "../../../main/ui/common/SuperButton/SuperButton"
 import s from "./EditProfile.module.css"
 import Spinner from "../../../main/ui/common/Spinner/Spinner"
 import { appActions } from "../../../main/bll/reducers/appReducer"
-import UserAvatar from '../UserAvatar/UserAvatar'
 import { UserType } from '../../../main/api/authAPI'
+import { EditableAvatar } from './EditableAvatar/EditableAvatar'
 
 
 export const EditProfile: FC<EditProfilePropsType> = ({userData, deactivateEditMode}) => {
@@ -17,24 +17,29 @@ export const EditProfile: FC<EditProfilePropsType> = ({userData, deactivateEditM
     const {name, avatar, email} = userData
     const isLoading = useAppSelector(state => state.profile.isLoading)
 
-    const [value, setValue] = useState(name)
+    const [nameInputValue, setNewName] = useState(name)
     const [btnDisabled, setBtnDisabled] = useState(true)
-    const [newFoto, setNewFoto] = useState<string | null>(avatar)
+    const [avatarImage, setNewAvatarImg] = useState<string | null>(avatar)
 
     useEffect(() => {
 
-        ( (value === name) || isLoading ) ? setBtnDisabled(true) : setBtnDisabled(false)
+        const nameNotChanged = (nameInputValue === name)
+        let avatarNotChanged = true
+
+        if (typeof avatarImage === 'string') {
+            avatarNotChanged = (avatarImage === avatar)
+        }
         
-    },[isLoading, value, name])
+        (( nameNotChanged && avatarNotChanged) || isLoading ) 
+            ? setBtnDisabled(true) 
+            : setBtnDisabled(false)
+        
+    },[isLoading, nameInputValue, name, avatarImage, avatar])
+
 
     const updateUserInfoHandler = () => {
-        if (value === name) {
-            dispatch(appActions.setAppErrorMessage('Same name.Please enter another'))
-        }
-        setNewFoto('')
 
-        dispatch(updateUserInfoTC(value, newFoto))
-
+        dispatch(updateUserInfoTC(nameInputValue, avatarImage))
     }
 
 
@@ -46,11 +51,11 @@ export const EditProfile: FC<EditProfilePropsType> = ({userData, deactivateEditM
                 {
                     isLoading 
                         ? <Spinner/>
-                        : <UserAvatar sideLength={100} />
+                        : <EditableAvatar image={avatarImage} setNewImage={setNewAvatarImg}/>
                 }
             </div>
             
-            <EditableTextLine text={value} setNewText={setValue}/>
+            <EditableTextLine text={nameInputValue} setNewText={setNewName}/>
             <div className={s.line}/>
             <span className={s.underText}>Nickname</span>
 
