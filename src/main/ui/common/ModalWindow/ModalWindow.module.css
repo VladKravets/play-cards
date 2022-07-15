@@ -26,7 +26,8 @@
     padding-right: 44px;
     border-bottom: 1px solid rgba(0,0,0, .1);
     font-size: 18px;
-
+    line-height: 1.6em;
+    text-align: left;
 }
 .modal_withoutChildren .modal_header  {
     border-bottom: none;

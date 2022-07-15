@@ -1,10 +1,10 @@
 :root {
     /* text */
-    --paginator-primary-color: #4673fc;
+    --paginator-primary-color: #c480da;
     /* currentpage text and border */
-    --paginator-secondary-color: rgb(235, 0, 0);
+    --paginator-secondary-color: #6b15b7;
     /* (hover focus active) elements color */
-    --paginator-secondary-light-color: rgb(255, 144, 144);
+    --paginator-secondary-light-color: #6b15b7;
 }
 
 .pagination button{
@@ -36,8 +36,8 @@
     border-radius: 50%;
     border: 1px solid transparent;
     font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
+    font-size: 14px;
+    font-weight: 600;
     color: var(--paginator-primary-color);
     cursor: pointer;
     outline: none;

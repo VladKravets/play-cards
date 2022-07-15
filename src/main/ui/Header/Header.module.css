@@ -50,7 +50,7 @@
     transition: 400ms background-color, 400ms color;
 }
 .navLink:hover {
-    background-color: #d0c0d6;
+    background-color: rgba(0,0,0, .1);
     /* color: #FFF; */
 }
 .navLinkActive {

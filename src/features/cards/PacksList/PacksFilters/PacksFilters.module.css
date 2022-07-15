@@ -10,18 +10,21 @@
     font-size: 20px;
 }
 
-.packBlock {
-    position: relative;
+.packFilters {
+    /* position: relative;
     font-family: 'Montserrat', sans-serif;
-    background-color: #F9F9FE;
+    background-color: #F9F9FE; */
     max-width: 380px;
     min-height: 500px;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     padding: 20px 30px;
+    /* padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px; */
     display: flex;
     flex-direction: column;
     align-items: center;
-    -webkit-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+    /* -webkit-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
     -moz-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
-    box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+    box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset; */
 }

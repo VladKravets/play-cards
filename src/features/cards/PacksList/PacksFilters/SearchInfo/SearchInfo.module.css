@@ -4,6 +4,7 @@
     right: 0;
     width: 19px;
     height: 19px;
+    z-index: 888;
 }
 .infoIcon {
     width: 100%;
@@ -19,7 +20,7 @@
     display: none;
     visibility: hidden;
     position: absolute;
-    top: 10px;
+    top: 20px;
     left: 0;
     right: 10px;
     z-index: 999;
