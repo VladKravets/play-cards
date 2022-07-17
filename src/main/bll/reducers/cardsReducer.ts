@@ -2,7 +2,7 @@ import {BaseThunkType, InferActionsTypes} from "../store"
 import {cardsAPI, CardType, NewCardDataType, SendCardsQueryParams, UpdateCardModelType} from "../../api/cardsAPI";
 import {appActions} from "./appReducer";
 import axios, {AxiosError} from "axios";
-import {PacksActionsTypes, requestPackNameTC} from "./packsReducer";
+import {requestPackNameTC} from "./packsReducer";
 
 const initialState = {
     cards: [] as CardType[],
@@ -24,21 +24,6 @@ export const cardsReducer = (state: CardsStateType = initialState, action: Cards
     switch (action.type) {
         case "cards/CARD/SET-CARDS":
             return {...state, cards: [...action.cards], cardsTotalCount: action.cardsTotalCount}
-        //
-        // case "cards/CARD/DELETE-CARD":
-        //     return {
-        //         ...state, cards: state.cards
-        //             .filter(card => card._id !== action.cardId)
-        //     }
-        //
-        // case "cards/CARD/UPDATE-CARD":
-        //     return {
-        //         ...state,
-        //         cards: state.cards
-        //             .map(card => card._id === action.cardId
-        //                 ? {...card, question: action.question}
-        //                 : card)
-        //     }
         default:
             return state
     }
@@ -49,12 +34,6 @@ export const cardsActions = {
     setCards: (cards: Array<CardType>, cardsTotalCount: number) => (
         {type: "cards/CARD/SET-CARDS", cards, cardsTotalCount} as const
     ),
-    // updateCard: (cardId: string, question: string) => (
-    //     {type: "cards/CARD/UPDATE-CARD", cardId, question} as const
-    // ),
-    // deleteCard: (cardId: string) => (
-    //     {type: "cards/CARD/DELETE-CARD", cardId} as const
-    // )
 }
 
 //thunk
