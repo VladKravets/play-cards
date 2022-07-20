@@ -4,18 +4,18 @@ import {useAppDispatch, useAppSelector} from "../../bll/store";
 import {logoutThunkTC} from "../../bll/reducers/appReducer";
 import exitIcon from "../../../assets/icons/exit.svg"
 import s from "./Header.module.css"
-import { PATH } from '../../../utils/path';
-import { Profile } from '../../../features/profile/Profile';
-import { PacksList } from '../../../features/cards/PacksList/PacksList';
-import { FlatProgress } from '../common/FlatProgress/FlatProgress';
-import { MainLogo } from '../common/MainLogo/MainLogo';
-import { About } from '../../../features/about/About';
+import {PATH} from '../../../utils/path';
+import {Profile} from '../../../features/profile/Profile';
+import {PacksList} from '../../../features/cards/PacksList/PacksList';
+import {FlatProgress} from '../common/FlatProgress/FlatProgress';
+import {MainLogo} from '../common/MainLogo/MainLogo';
+import {About} from '../../../features/about/About';
 
 
 const NavLinksList = [
-    { label: 'Profile', path: PATH.profile, component: <Profile /> },
-	{ label: 'Packs list', path: PATH.packsList, component: <PacksList /> },
-	{ label: 'About', path: PATH.about, component: <About /> },
+    {label: 'Profile', path: PATH.profile, component: <Profile/>},
+    {label: 'Packs list', path: PATH.packsList, component: <PacksList/>},
+    {label: 'About', path: PATH.about, component: <About/>},
 ]
 
 const Header = () => {
@@ -34,27 +34,27 @@ const Header = () => {
 
     return (
         <>
-        <div className={s.headerSpaceStub}></div>
-        <div className={s.wrapper}>
-            <div className={`container ${s.headerContainer}`}>
+            <div className={s.headerSpaceStub}></div>
+            <div className={s.wrapper}>
+                <div className={`container ${s.headerContainer}`}>
 
-                <div className={s.header}>
+                    <div className={s.header}>
 
-                    <MainLogo />
+                        <MainLogo/>
 
-                    <div className={s.navLinks}>
-                        {mappedLinks}
+                        <div className={s.navLinks}>
+                            {mappedLinks}
+                        </div>
+
+                        {isLoggedIn && <div className={s.logOut} onClick={logoutHandler}>
+                            <img src={exitIcon} alt=""/>
+                        </div>
+                        }
                     </div>
-                    
-                    {isLoggedIn && <div className={s.logOut} onClick={logoutHandler}>
-                        <img src={exitIcon} alt=""/>
-                    </div>
-                    }
                 </div>
-            </div>
 
-            <FlatProgress withColoredLine isLoading={appStatus === 'loading'} />
-        </div>
+                <FlatProgress withColoredLine isLoading={appStatus === 'loading'}/>
+            </div>
         </>
     )
 }

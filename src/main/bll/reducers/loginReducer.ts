@@ -32,31 +32,31 @@ export const loginActions = {
 
 
 export const loginTC = (email: string, password: string, rememberMe: boolean = false): BaseThunkType<LoginActionsTypes> =>
-async (dispatch) => {
+    async (dispatch) => {
 
-    dispatch( loginActions.setLoadingStatus(true) )
+        dispatch(loginActions.setLoadingStatus(true))
 
-    authAPI.login(email, password, rememberMe)
-        .then(res => {
-            if (res) {
-                dispatch(profileActions.setUserData(res))
-                dispatch(loginActions.setIsLoggedInAC(true))
-            } else {
-                alert('Упс...что-то не так с сервером')
-            }
-        })
-        .catch(e => {
-            const error = e.response
-                ? e.response.data.error
-                : (e.message + ', more details in the console');
+        authAPI.login(email, password, rememberMe)
+            .then(res => {
+                if (res) {
+                    dispatch(profileActions.setUserData(res))
+                    dispatch(loginActions.setIsLoggedInAC(true))
+                } else {
+                    alert('Упс...что-то не так с сервером')
+                }
+            })
+            .catch(e => {
+                const error = e.response
+                    ? e.response.data.error
+                    : (e.message + ', more details in the console');
 
-            dispatch( appActions.setAppErrorMessage(error) )
-        })
-        .finally(() => {
-            dispatch( loginActions.setLoadingStatus(false) )
-        })
+                dispatch(appActions.setAppErrorMessage(error))
+            })
+            .finally(() => {
+                dispatch(loginActions.setLoadingStatus(false))
+            })
 
-}
+    }
 
 
 export default loginReducer

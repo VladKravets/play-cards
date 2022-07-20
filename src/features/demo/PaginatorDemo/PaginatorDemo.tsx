@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import Paginator from '../../../main/ui/common/Paginator/Paginator'
 
 const PaginatorDemo = () => {
@@ -12,10 +12,10 @@ const PaginatorDemo = () => {
     }
 
     return (
-        <Paginator 
-            totalItemsCount={TOTAL_ITEMS_COUNT} 
+        <Paginator
+            totalItemsCount={TOTAL_ITEMS_COUNT}
             pageSize={PAGE_SIZE}
-            currentPage={currentPage} 
+            currentPage={currentPage}
             onPageSelected={pageSelectHandler}/>
     )
 }

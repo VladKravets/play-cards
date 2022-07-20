@@ -1,7 +1,7 @@
-import React, { FC, useCallback, useEffect } from 'react'
+import React, {FC, useCallback, useEffect} from 'react'
 import s from './ModalWindow.module.css'
 
-const ModalWindow: FC<ModalWindowPropsType> = React.memo( (props) => {
+const ModalWindow: FC<ModalWindowPropsType> = React.memo((props) => {
     const {children, title, open, onClose, onOverlayClose = true} = props
 
     const onCloseHandler = (e: CloseModalEventType) => {
@@ -11,7 +11,7 @@ const ModalWindow: FC<ModalWindowPropsType> = React.memo( (props) => {
     }
 
     const onOverlayCloseHandler = (e: CloseModalEventType) => {
-        
+
         let target = e.target as HTMLElement
 
         if (onOverlayClose && target && target.classList.contains(s.overlay)) {
@@ -19,9 +19,9 @@ const ModalWindow: FC<ModalWindowPropsType> = React.memo( (props) => {
         }
     }
 
-    const onEscPressHandler = useCallback( (e: KeyboardEvent) => {
+    const onEscPressHandler = useCallback((e: KeyboardEvent) => {
         if (e.key === 'Escape') {
-            
+
             onClose && onClose(e)
         }
     }, [onClose])
@@ -41,7 +41,7 @@ const ModalWindow: FC<ModalWindowPropsType> = React.memo( (props) => {
                     {children}
                 </div>
             </div>
-            <EscapePressListener callback={onEscPressHandler} />
+            <EscapePressListener callback={onEscPressHandler}/>
         </div>
     )
 })
@@ -49,7 +49,7 @@ const ModalWindow: FC<ModalWindowPropsType> = React.memo( (props) => {
 export default ModalWindow
 
 
-const EscapePressListener = ({callback}: {callback: (e: KeyboardEvent) => void}) => {
+const EscapePressListener = ({callback}: { callback: (e: KeyboardEvent) => void }) => {
 
     useEffect(() => {
         window.addEventListener('keydown', callback)

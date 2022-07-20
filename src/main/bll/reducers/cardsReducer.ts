@@ -87,7 +87,7 @@ export const removeCardTC = (cardsPack_ID: string, card_ID: string): BaseThunkTy
         dispatch(appActions.setAppStatus('succeeded'))
     }
 }
-export const updateCardTC = (cardsPack_ID: string,cardModel:UpdateCardModelType): BaseThunkType<CardsActionsTypes> => async (dispatch) => {
+export const updateCardTC = (cardsPack_ID: string, cardModel: UpdateCardModelType): BaseThunkType<CardsActionsTypes> => async (dispatch) => {
     try {
         dispatch(appActions.setAppStatus('loading'))
         await cardsAPI.updateCard(cardModel)

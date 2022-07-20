@@ -1,8 +1,8 @@
 import React from 'react';
-import { PATH } from '../../../utils/path';
-import { useAppSelector } from "../../../main/bll/store";
-import { LoginForm } from "./LoginForm";
-import { AuthBlock } from '../AuthBlock';
+import {PATH} from '../../../utils/path';
+import {useAppSelector} from "../../../main/bll/store";
+import {LoginForm} from "./LoginForm";
+import {AuthBlock} from '../AuthBlock';
 
 export const Login = () => {
 
@@ -15,9 +15,9 @@ export const Login = () => {
             navLinkPath={PATH.registration}
             navLinkTitle="Sign Up"
             withRocket="right"
-            isLoading={isLoading} >
+            isLoading={isLoading}>
 
-            <LoginForm isLoading={isLoading} />
+            <LoginForm isLoading={isLoading}/>
         </AuthBlock>
     )
 }
