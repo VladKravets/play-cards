@@ -11,23 +11,14 @@
 
 .wrapper {
 	position: relative;
-	/* display: flex;
-	justify-content: center; */
 	width: 80px;
 	height: 180px;
-	/* width: 150px;
-	height: 250px; */
-	/* width: 300px;
-	height: 500px; */
-	/* width: 500px;
-	height: 500px; */
 }
 
 /* >>>>>>>>>>> ROCKET >>>>>>>>>>> */
 .rocket_body {
 	width: 100%;
 	height: 100%;
-	/* left: calc(50% - 50px); */
 	animation: bounce 0.5s infinite;
 }
 
@@ -38,7 +29,6 @@
 	bottom: 0;
 	transform: translate(-50%, 100%);
 	width: 60%;
-	/* height: 13px; */
 	height: 7%;
 	background-color: var(--rocket-darkgrey);
 	border-bottom-right-radius: 60%;
@@ -49,7 +39,6 @@
 	background-color: var(--rocket-lightgrey);
 	width: 100%;
 	height: 100%;
-	/* left: calc(50% - 50px); */
 	border-top-right-radius: 100%;
 	border-top-left-radius: 100%;
 	border-bottom-left-radius: 50%;
@@ -66,7 +55,10 @@
 	left: 50%;
 	top: 0;
 	transform: translate(-62%, 100%);
-	border: 5px solid var(--rocket-midgrey);
+}
+
+.largeRocket .window {
+	border: 0.36em solid var(--rocket-midgrey);
 }
 
 .fin {
@@ -80,14 +72,12 @@
 }
 
 .fin_left {
-	/* left: -30px; */
 	left: -40%;
 	border-top-left-radius: 80%;
 	border-bottom-left-radius: 20%;
 }
 
 .fin_right {
-	/* right: -30px; */
 	right: -40%;
 	border-top-right-radius: 80%;
 	border-bottom-right-radius: 20%;
@@ -120,7 +110,7 @@
 		transform: translate3d(0px, 0px, 0);
 	}
 	50% {
-		transform: translate3d(0px, -4px, 0);
+		transform: translate3d(0px, -2%, 0);
 	}
 	100% {
 		transform: translate3d(0px, 0px, 0);
