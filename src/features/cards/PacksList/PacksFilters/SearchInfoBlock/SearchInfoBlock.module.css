@@ -1,0 +1,21 @@
+.searchInfoBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 200px;
+    padding: 20px 10px;
+    border-radius: 4px;
+    color: #fff;
+    /* todo: mb change background-color */
+    background-color: #6b15b7;
+    /* background-color: #c480da; */
+}
+
+.infoMessages {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 14px;
+    font-weight: 600;
+}
