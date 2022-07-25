@@ -14,7 +14,7 @@ export const LearnPack: FC<LearnPackPropsType> = ({packId}) => {
 
     const learnPackHandler = (packId: string) => {
         dispatch(learnPackTC(packId));
-        navigate(PATH.training + packId);
+        navigate(PATH.training + "/" + packId);
     }
 
     return (

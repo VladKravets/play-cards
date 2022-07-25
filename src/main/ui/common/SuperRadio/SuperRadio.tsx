@@ -6,7 +6,7 @@ type DefaultRadioPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElem
 export type OptionType = {
     label: string
     value: string
-    disabled: boolean
+    disabled?: boolean
 }
 
 type SuperRadioPropsType = DefaultRadioPropsType & {

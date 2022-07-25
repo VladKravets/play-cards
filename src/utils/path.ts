@@ -6,8 +6,8 @@ export const PATH = {
 	passwordRecoveryInfo: '/password-recovery-info' as const,
 	profile: '/profile' as const,
 	packsList: '/packs-list' as const,
-	cardsList: '/cards-list/:packId' as const,
-	training: '/training/:packId' as const,
+	cardsList: '/cards-list' as const,
+	training: '/training' as const,
 	componentsDemo: '/components-demo' as const,
 	about: '/about' as const,
 }

@@ -57,13 +57,11 @@ const PacksTableHead = () => {
 
 const PacksTableRow: FC<PacksTableRowPropsType> = ({pack, isOwner}) => {
 
-    const cardsListPath = PATH.cardsList.replace(/:packId/, '')
-
     return (
         <TableRow key={pack._id}>
 
             <TableCell component="th" scope="row">
-                <NavLink to={cardsListPath + pack._id}> {pack.name} </NavLink>
+                <NavLink to={PATH.cardsList + "/" + pack._id}> {pack.name} </NavLink>
             </TableCell>
 
             <TableCell style={{width: 120}} align="center">

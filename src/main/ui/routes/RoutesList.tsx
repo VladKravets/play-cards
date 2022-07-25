@@ -22,8 +22,8 @@ export const ROUTES = [
 	{ label: 'PassRecoveryInfo', path: PATH.passwordRecoveryInfo, component: <PasswordRecoveryInfo /> },
 	{ label: 'Profile', path: PATH.profile, component: <Profile /> },
 	{ label: 'PacksList', path: PATH.packsList, component: <PacksList /> },
-	{ label: 'CardsList', path: PATH.cardsList, component: <CardsList /> },
-	{ label: 'Training', path: PATH.training, component: <Training /> },
+	{ label: 'CardsList', path: (PATH.cardsList + '/:packId'), component: <CardsList /> },
+	{ label: 'Training', path: (PATH.training + '/:packId'), component: <Training /> },
 	{ label: 'ComponentsDemo', path: PATH.componentsDemo, component: <ComponentsDemo /> },
 	{ label: 'About', path: PATH.about, component: <About /> },
 ]
